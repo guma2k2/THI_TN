@@ -34,6 +34,7 @@ namespace THI_TN
             this.tenmh = tenmh;
             this.totalSeconds = 0;
             this.bangDiem = bangDiem;
+            this.ControlBox = false;
         }
         
 
@@ -177,11 +178,9 @@ namespace THI_TN
 
         private void btnNopBai_Click(object sender, EventArgs e)
         {
-            // alert if any question were not selected
-            // save bang diem
+            timerThi.Stop();
             calculateMark();
             Console.WriteLine(diemThi.ToString());
-            MessageBox.Show("Error: " + diemThi, "", MessageBoxButtons.OK);
             ResultExam result = new ResultExam();
             result.lan = bangDiem.lan;
             result.tenMh = tenmh;
@@ -190,14 +189,16 @@ namespace THI_TN
             if (Program.mGroup == "GV")
             {
                 frmThiResult frm = new frmThiResult(result);
+                
                 frm.Show();
+
                 return;
             } 
             DataTable ctBaiThiTable = createDataTableCtBaiThi();
             saveBangDiem(ctBaiThiTable);
             frmThiResult f = new frmThiResult(result);
             f.Show();
-
+            this.Close();
         }
 
         private DataTable createDataTableCtBaiThi()

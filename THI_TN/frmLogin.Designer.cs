@@ -45,7 +45,7 @@
             this.btnExist.Name = "btnExist";
             this.btnExist.Size = new System.Drawing.Size(111, 48);
             this.btnExist.TabIndex = 26;
-            this.btnExist.Text = "Thoat";
+            this.btnExist.Text = "Thoát";
             this.btnExist.UseVisualStyleBackColor = true;
             this.btnExist.Click += new System.EventHandler(this.btnExist_Click);
             // 
@@ -55,7 +55,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(108, 48);
             this.btnLogin.TabIndex = 25;
-            this.btnLogin.Text = "Dang nhap";
+            this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -64,9 +64,9 @@
             this.cbSinhVien.AutoSize = true;
             this.cbSinhVien.Location = new System.Drawing.Point(235, 265);
             this.cbSinhVien.Name = "cbSinhVien";
-            this.cbSinhVien.Size = new System.Drawing.Size(83, 20);
+            this.cbSinhVien.Size = new System.Drawing.Size(81, 20);
             this.cbSinhVien.TabIndex = 24;
-            this.cbSinhVien.Text = "Sinh Vien";
+            this.cbSinhVien.Text = "Sinh viên";
             this.cbSinhVien.UseVisualStyleBackColor = true;
             this.cbSinhVien.CheckedChanged += new System.EventHandler(this.cbSinhVien_CheckedChanged);
             // 
@@ -75,15 +75,15 @@
             this.Mk.AutoSize = true;
             this.Mk.Location = new System.Drawing.Point(117, 214);
             this.Mk.Name = "Mk";
-            this.Mk.Size = new System.Drawing.Size(24, 16);
+            this.Mk.Size = new System.Drawing.Size(59, 16);
             this.Mk.TabIndex = 23;
-            this.Mk.Text = "MK";
+            this.Mk.Text = "Mật khẩu";
             // 
             // txtMK
             // 
             this.txtMK.Location = new System.Drawing.Point(235, 211);
             this.txtMK.Name = "txtMK";
-            this.txtMK.Size = new System.Drawing.Size(196, 23);
+            this.txtMK.Size = new System.Drawing.Size(232, 23);
             this.txtMK.TabIndex = 22;
             this.txtMK.Text = "123456";
             this.txtMK.UseSystemPasswordChar = true;
@@ -95,13 +95,13 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 16);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Ten dang nhap";
+            this.label2.Text = "Tên đăng nhập";
             // 
             // txtLogin
             // 
             this.txtLogin.Location = new System.Drawing.Point(235, 153);
             this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(196, 23);
+            this.txtLogin.Size = new System.Drawing.Size(232, 23);
             this.txtLogin.TabIndex = 20;
             this.txtLogin.Text = "PVH";
             // 
@@ -110,16 +110,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(117, 106);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 19;
-            this.label1.Text = "Chi Nhanh";
+            this.label1.Text = "Cơ sở:";
             // 
             // cbChiNhanh
             // 
+            this.cbChiNhanh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbChiNhanh.FormattingEnabled = true;
             this.cbChiNhanh.Location = new System.Drawing.Point(235, 103);
             this.cbChiNhanh.Name = "cbChiNhanh";
-            this.cbChiNhanh.Size = new System.Drawing.Size(196, 24);
+            this.cbChiNhanh.Size = new System.Drawing.Size(232, 24);
+            this.cbChiNhanh.Sorted = true;
             this.cbChiNhanh.TabIndex = 18;
             this.cbChiNhanh.SelectedIndexChanged += new System.EventHandler(this.cbChiNhanh_SelectedIndexChanged);
             // 

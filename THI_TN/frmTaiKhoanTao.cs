@@ -28,10 +28,30 @@ namespace THI_TN
         private void frmTaiKhoanTao_Load(object sender, EventArgs e)
         {
             loadCbxHoTen();
-            txtUsername.Text = cbxHoTen.SelectedValue.ToString();
-            rbTruong.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
-            rbCoSo.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
-            rbGiaoVien.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+            if (cbxHoTen.SelectedValue != null)
+            {
+                txtUsername.Text = cbxHoTen.SelectedValue.ToString();
+                rbTruong.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+                rbCoSo.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+                rbGiaoVien.CheckedChanged += new EventHandler(radioButtons_CheckedChanged);
+            }else
+            {
+                txtUsername.Text = "";
+                txtMatKhau.Text = txtXacNhanMK.Text = "";
+            }
+            if (Program.mGroup == "CoSo")
+            {
+                rbCoSo.Enabled = true;
+                rbGiaoVien.Enabled = true;
+                rbTruong.Enabled = false;
+            }
+            else if (Program.mGroup == "Truong")
+            {
+                rbCoSo.Enabled = false;
+                rbGiaoVien.Enabled = false;
+                rbTruong.Enabled = true;
+            }
+
         }
 
         private void loadCbxHoTen()
@@ -65,12 +85,13 @@ namespace THI_TN
 
             if (resultMa == 2)
             {
-                XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Lỗi kết nối cơ sở dữ liệu", "", MessageBoxButtons.OK);
                 return ;
             }
             else if (resultMa == 0)
             {
-                XtraMessageBox.Show("Tao tai khoan thanh cong", "", MessageBoxButtons.OK);
+                XtraMessageBox.Show("Tạo tài khoản thành công", "", MessageBoxButtons.OK);
+                frmTaiKhoanTao_Load(sender, e);
                 return ;
             }
         }
@@ -91,7 +112,7 @@ namespace THI_TN
                 }
                 else if (((RadioButton)sender) == rbGiaoVien)
                 {
-                    role = "GIAOVIEN";
+                    role = "GIANGVIEN";
 
                 }
                 
@@ -116,6 +137,11 @@ namespace THI_TN
         private void txtUsername_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

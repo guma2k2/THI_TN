@@ -113,92 +113,92 @@
             // cAUHOILabel
             // 
             cAUHOILabel.AutoSize = true;
-            cAUHOILabel.Location = new System.Drawing.Point(105, 55);
+            cAUHOILabel.Location = new System.Drawing.Point(36, 25);
             cAUHOILabel.Name = "cAUHOILabel";
-            cAUHOILabel.Size = new System.Drawing.Size(57, 16);
+            cAUHOILabel.Size = new System.Drawing.Size(55, 16);
             cAUHOILabel.TabIndex = 0;
-            cAUHOILabel.Text = "CAUHOI:";
+            cAUHOILabel.Text = "Câu hỏi:";
             // 
             // mAMHLabel
             // 
             mAMHLabel.AutoSize = true;
-            mAMHLabel.Location = new System.Drawing.Point(123, 119);
+            mAMHLabel.Location = new System.Drawing.Point(43, 107);
             mAMHLabel.Name = "mAMHLabel";
-            mAMHLabel.Size = new System.Drawing.Size(48, 16);
+            mAMHLabel.Size = new System.Drawing.Size(82, 16);
             mAMHLabel.TabIndex = 2;
-            mAMHLabel.Text = "MAMH:";
+            mAMHLabel.Text = "Mã môn học:";
             // 
             // tRINHDOLabel
             // 
             tRINHDOLabel.AutoSize = true;
-            tRINHDOLabel.Location = new System.Drawing.Point(123, 161);
+            tRINHDOLabel.Location = new System.Drawing.Point(27, 141);
             tRINHDOLabel.Name = "tRINHDOLabel";
-            tRINHDOLabel.Size = new System.Drawing.Size(65, 16);
+            tRINHDOLabel.Size = new System.Drawing.Size(60, 16);
             tRINHDOLabel.TabIndex = 4;
-            tRINHDOLabel.Text = "TRINHDO:";
+            tRINHDOLabel.Text = "Trình độ:";
             // 
             // nOIDUNGLabel
             // 
             nOIDUNGLabel.AutoSize = true;
-            nOIDUNGLabel.Location = new System.Drawing.Point(123, 209);
+            nOIDUNGLabel.Location = new System.Drawing.Point(27, 180);
             nOIDUNGLabel.Name = "nOIDUNGLabel";
-            nOIDUNGLabel.Size = new System.Drawing.Size(65, 16);
+            nOIDUNGLabel.Size = new System.Drawing.Size(62, 16);
             nOIDUNGLabel.TabIndex = 6;
-            nOIDUNGLabel.Text = "NOIDUNG:";
+            nOIDUNGLabel.Text = "Nội dung:";
             // 
             // bLabel
             // 
             bLabel.AutoSize = true;
-            bLabel.Location = new System.Drawing.Point(593, 65);
+            bLabel.Location = new System.Drawing.Point(546, 68);
             bLabel.Name = "bLabel";
-            bLabel.Size = new System.Drawing.Size(19, 16);
+            bLabel.Size = new System.Drawing.Size(134, 16);
             bLabel.TabIndex = 8;
-            bLabel.Text = "B:";
+            bLabel.Text = "Nội dung câu trả lời B:";
             // 
             // aLabel
             // 
             aLabel.AutoSize = true;
-            aLabel.Location = new System.Drawing.Point(590, 25);
+            aLabel.Location = new System.Drawing.Point(546, 25);
             aLabel.Name = "aLabel";
-            aLabel.Size = new System.Drawing.Size(20, 16);
+            aLabel.Size = new System.Drawing.Size(135, 16);
             aLabel.TabIndex = 10;
-            aLabel.Text = "A:";
+            aLabel.Text = "Nội dung câu trả lời A:";
             // 
             // cLabel
             // 
             cLabel.AutoSize = true;
-            cLabel.Location = new System.Drawing.Point(602, 110);
+            cLabel.Location = new System.Drawing.Point(546, 107);
             cLabel.Name = "cLabel";
-            cLabel.Size = new System.Drawing.Size(20, 16);
+            cLabel.Size = new System.Drawing.Size(135, 16);
             cLabel.TabIndex = 12;
-            cLabel.Text = "C:";
+            cLabel.Text = "Nội dung câu trả lời C:";
             // 
             // dLabel
             // 
             dLabel.AutoSize = true;
-            dLabel.Location = new System.Drawing.Point(607, 141);
+            dLabel.Location = new System.Drawing.Point(546, 141);
             dLabel.Name = "dLabel";
-            dLabel.Size = new System.Drawing.Size(20, 16);
+            dLabel.Size = new System.Drawing.Size(135, 16);
             dLabel.TabIndex = 14;
-            dLabel.Text = "D:";
+            dLabel.Text = "Nội dung câu trả lời D:";
             // 
             // dAP_ANLabel
             // 
             dAP_ANLabel.AutoSize = true;
-            dAP_ANLabel.Location = new System.Drawing.Point(567, 180);
+            dAP_ANLabel.Location = new System.Drawing.Point(625, 177);
             dAP_ANLabel.Name = "dAP_ANLabel";
-            dAP_ANLabel.Size = new System.Drawing.Size(55, 16);
+            dAP_ANLabel.Size = new System.Drawing.Size(53, 16);
             dAP_ANLabel.TabIndex = 16;
-            dAP_ANLabel.Text = "DAP AN:";
+            dAP_ANLabel.Text = "Đáp án:";
             // 
             // mAGVLabel
             // 
             mAGVLabel.AutoSize = true;
-            mAGVLabel.Location = new System.Drawing.Point(566, 209);
+            mAGVLabel.Location = new System.Drawing.Point(590, 211);
             mAGVLabel.Name = "mAGVLabel";
-            mAGVLabel.Size = new System.Drawing.Size(46, 16);
+            mAGVLabel.Size = new System.Drawing.Size(91, 16);
             mAGVLabel.TabIndex = 18;
-            mAGVLabel.Text = "MAGV:";
+            mAGVLabel.Text = "Mã giảng viên:";
             // 
             // barManager1
             // 
@@ -241,7 +241,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Caption = "Them";
+            this.btnAdd.Caption = "Thêm";
             this.btnAdd.Id = 0;
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
             this.btnAdd.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.LargeImage")));
@@ -250,7 +250,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Caption = "Sua";
+            this.btnSua.Caption = "Sửa";
             this.btnSua.Hint = "Sua";
             this.btnSua.Id = 1;
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
@@ -269,7 +269,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Caption = "Xoa";
+            this.btnXoa.Caption = "Xóa";
             this.btnXoa.Id = 3;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
@@ -278,7 +278,7 @@
             // 
             // btnPhucHoi
             // 
-            this.btnPhucHoi.Caption = "Phuc hoi";
+            this.btnPhucHoi.Caption = "Phục hồi";
             this.btnPhucHoi.Id = 4;
             this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
             this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
@@ -287,7 +287,7 @@
             // 
             // btnThoat
             // 
-            this.btnThoat.Caption = "Thoat";
+            this.btnThoat.Caption = "Thoát";
             this.btnThoat.Id = 5;
             this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
@@ -296,7 +296,7 @@
             // 
             // barButtonItem5
             // 
-            this.barButtonItem5.Caption = "Lam moi";
+            this.barButtonItem5.Caption = "Làm mới";
             this.barButtonItem5.Id = 6;
             this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
             this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
@@ -421,26 +421,26 @@
             "Đại học chuyên ngành",
             "Đại học không chuyên ngành",
             "Cao đẳng"});
-            this.cbxTrinhDo.Location = new System.Drawing.Point(194, 158);
+            this.cbxTrinhDo.Location = new System.Drawing.Point(126, 141);
             this.cbxTrinhDo.Name = "cbxTrinhDo";
-            this.cbxTrinhDo.Size = new System.Drawing.Size(121, 24);
+            this.cbxTrinhDo.Size = new System.Drawing.Size(137, 24);
             this.cbxTrinhDo.TabIndex = 22;
             this.cbxTrinhDo.SelectedIndexChanged += new System.EventHandler(this.cbxTrinhDo_SelectedIndexChanged);
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(117, 86);
+            this.labelControl1.Location = new System.Drawing.Point(12, 65);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(45, 16);
+            this.labelControl1.Size = new System.Drawing.Size(80, 16);
             this.labelControl1.TabIndex = 21;
-            this.labelControl1.Text = "MonHoc";
+            this.labelControl1.Text = "Tên môn học:";
             // 
             // cbxMonHoc
             // 
             this.cbxMonHoc.FormattingEnabled = true;
-            this.cbxMonHoc.Location = new System.Drawing.Point(194, 83);
+            this.cbxMonHoc.Location = new System.Drawing.Point(126, 65);
             this.cbxMonHoc.Name = "cbxMonHoc";
-            this.cbxMonHoc.Size = new System.Drawing.Size(121, 24);
+            this.cbxMonHoc.Size = new System.Drawing.Size(280, 24);
             this.cbxMonHoc.TabIndex = 20;
             this.cbxMonHoc.SelectedIndexChanged += new System.EventHandler(this.cbxMonHoc_SelectedIndexChanged);
             // 
@@ -448,10 +448,10 @@
             // 
             this.txtMAGV.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "MAGV", true));
             this.txtMAGV.Enabled = false;
-            this.txtMAGV.Location = new System.Drawing.Point(633, 206);
+            this.txtMAGV.Location = new System.Drawing.Point(737, 205);
             this.txtMAGV.MenuManager = this.barManager1;
             this.txtMAGV.Name = "txtMAGV";
-            this.txtMAGV.Size = new System.Drawing.Size(125, 22);
+            this.txtMAGV.Size = new System.Drawing.Size(330, 22);
             this.txtMAGV.TabIndex = 19;
             // 
             // bdsBoDe
@@ -467,61 +467,61 @@
             // txtDapAn
             // 
             this.txtDapAn.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "DAP_AN", true));
-            this.txtDapAn.Location = new System.Drawing.Point(633, 174);
+            this.txtDapAn.Location = new System.Drawing.Point(737, 174);
             this.txtDapAn.MenuManager = this.barManager1;
             this.txtDapAn.Name = "txtDapAn";
-            this.txtDapAn.Size = new System.Drawing.Size(125, 22);
+            this.txtDapAn.Size = new System.Drawing.Size(330, 22);
             this.txtDapAn.TabIndex = 17;
             // 
             // txtD
             // 
             this.txtD.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "D", true));
-            this.txtD.Location = new System.Drawing.Point(633, 138);
+            this.txtD.Location = new System.Drawing.Point(737, 138);
             this.txtD.MenuManager = this.barManager1;
             this.txtD.Name = "txtD";
-            this.txtD.Size = new System.Drawing.Size(125, 22);
+            this.txtD.Size = new System.Drawing.Size(330, 22);
             this.txtD.TabIndex = 15;
             // 
             // txtC
             // 
             this.txtC.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "C", true));
-            this.txtC.Location = new System.Drawing.Point(633, 107);
+            this.txtC.Location = new System.Drawing.Point(737, 101);
             this.txtC.MenuManager = this.barManager1;
             this.txtC.Name = "txtC";
-            this.txtC.Size = new System.Drawing.Size(125, 22);
+            this.txtC.Size = new System.Drawing.Size(330, 22);
             this.txtC.TabIndex = 13;
             // 
             // txtA
             // 
             this.txtA.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "A", true));
-            this.txtA.Location = new System.Drawing.Point(633, 22);
+            this.txtA.Location = new System.Drawing.Point(737, 19);
             this.txtA.MenuManager = this.barManager1;
             this.txtA.Name = "txtA";
-            this.txtA.Size = new System.Drawing.Size(125, 22);
+            this.txtA.Size = new System.Drawing.Size(330, 22);
             this.txtA.TabIndex = 11;
             // 
             // txtB
             // 
             this.txtB.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "B", true));
-            this.txtB.Location = new System.Drawing.Point(633, 62);
+            this.txtB.Location = new System.Drawing.Point(737, 62);
             this.txtB.MenuManager = this.barManager1;
             this.txtB.Name = "txtB";
-            this.txtB.Size = new System.Drawing.Size(125, 22);
+            this.txtB.Size = new System.Drawing.Size(330, 22);
             this.txtB.TabIndex = 9;
             // 
             // txtNoiDung
             // 
             this.txtNoiDung.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "NOIDUNG", true));
-            this.txtNoiDung.Location = new System.Drawing.Point(194, 206);
+            this.txtNoiDung.Location = new System.Drawing.Point(126, 188);
             this.txtNoiDung.MenuManager = this.barManager1;
             this.txtNoiDung.Name = "txtNoiDung";
-            this.txtNoiDung.Size = new System.Drawing.Size(125, 22);
+            this.txtNoiDung.Size = new System.Drawing.Size(280, 22);
             this.txtNoiDung.TabIndex = 7;
             // 
             // txtTrinhDo
             // 
             this.txtTrinhDo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "TRINHDO", true));
-            this.txtTrinhDo.Location = new System.Drawing.Point(335, 155);
+            this.txtTrinhDo.Location = new System.Drawing.Point(281, 143);
             this.txtTrinhDo.MenuManager = this.barManager1;
             this.txtTrinhDo.Name = "txtTrinhDo";
             this.txtTrinhDo.Size = new System.Drawing.Size(125, 22);
@@ -531,10 +531,10 @@
             // 
             this.txtMAMH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsBoDe, "MAMH", true));
             this.txtMAMH.Enabled = false;
-            this.txtMAMH.Location = new System.Drawing.Point(194, 113);
+            this.txtMAMH.Location = new System.Drawing.Point(126, 107);
             this.txtMAMH.MenuManager = this.barManager1;
             this.txtMAMH.Name = "txtMAMH";
-            this.txtMAMH.Size = new System.Drawing.Size(125, 22);
+            this.txtMAMH.Size = new System.Drawing.Size(280, 22);
             this.txtMAMH.TabIndex = 3;
             // 
             // cAUHOISpinEdit
@@ -545,12 +545,12 @@
             0,
             0,
             0});
-            this.cAUHOISpinEdit.Location = new System.Drawing.Point(194, 47);
+            this.cAUHOISpinEdit.Location = new System.Drawing.Point(126, 21);
             this.cAUHOISpinEdit.MenuManager = this.barManager1;
             this.cAUHOISpinEdit.Name = "cAUHOISpinEdit";
             this.cAUHOISpinEdit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cAUHOISpinEdit.Size = new System.Drawing.Size(125, 24);
+            this.cAUHOISpinEdit.Size = new System.Drawing.Size(280, 24);
             this.cAUHOISpinEdit.TabIndex = 1;
             // 
             // BODETableAdapter
@@ -563,6 +563,7 @@
             this.tableAdapterManager.BANGDIEMTableAdapter = null;
             this.tableAdapterManager.BODETableAdapter = this.BODETableAdapter;
             this.tableAdapterManager.COSOTableAdapter = null;
+            this.tableAdapterManager.CT_BAITHITableAdapter = null;
             this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
             this.tableAdapterManager.GIAOVIENTableAdapter = null;
             this.tableAdapterManager.KHOATableAdapter = null;

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,19 +23,41 @@ namespace THI_TN
         private string flagOptionNhapDe;
         private void frmBoDe_Load(object sender, EventArgs e)
         {
+            
             DS.EnforceConstraints = false;
             this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.MONHOCTableAdapter.Fill(this.DS.MONHOC);
 
             this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
             this.BODETableAdapter.Fill(this.DS.BODE);
-            loadBoDe();
+
+
+            this.CT_BAITHITableAdapter.Connection.ConnectionString = Program.connstr;
+            this.CT_BAITHITableAdapter.Fill(this.DS.CT_BAITHI);
+
             cbxMonHoc.DataSource = bdsMonHoc;
             cbxMonHoc.DisplayMember = "TENMH";
             cbxMonHoc.ValueMember = "MAMH";
-            /*cbxTrinhDo.SelectedIndex = 0;*/
             txtMAGV.Text = Program.username;
+            if (Program.mGroup == "GV")
+            {
+                loadBoDe();
+            }else if (Program.mGroup == "Truong")
+            {
+                disableEditBoDe();
+            }
+            btnPhucHoi.Enabled = btnGhi.Enabled = false;
+            loadCbxTrinhDo();
+            loadCbxDapAn();
+        }
 
+        private void disableEditBoDe()
+        {
+
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            panelControl2.Enabled = false;
+            bODEGridControl.Enabled = true;
         }
         private void loadBoDe()
         {
@@ -53,6 +76,26 @@ namespace THI_TN
             bdsBoDe.AddNew();
             txtMAMH.Text = cbxMonHoc.SelectedValue.ToString();
             txtMAGV.Text = Program.username;
+            cbxTrinhDo.SelectedIndex = 0;
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            panelControl2.Enabled = true;
+            bODEGridControl.Enabled = false;
+            txtCauHoi.Text = getMaxValueCauHoi() + "";
+        }
+
+        private int getMaxValueCauHoi ()
+        {
+            int maxValue = 0;
+            for (int i = 0; i < gridBoDe.RowCount; i++)
+            {
+                int value = Convert.ToInt32(gridBoDe.GetRowCellValue(i, "CAUHOI"));
+                if (value > maxValue)
+                {
+                    maxValue = value;
+                }
+            }
+            return maxValue + 1;
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -60,13 +103,19 @@ namespace THI_TN
             vitri = bdsBoDe.Position;
             flagOptionNhapDe = "UPDATE";
 
+
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            panelControl2.Enabled = true;
+            bODEGridControl.Enabled = false;
+
         }
         private bool ValicateBoDe()
         {
 
             if (txtNoiDung.Text.Trim() == "")
             {
-                MessageBox.Show("Ma sinh vien khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Nội dung câu hỏi không được bỏ trống", "", MessageBoxButtons.OK);
                 txtNoiDung.Focus();
                 return false;
             }
@@ -74,7 +123,7 @@ namespace THI_TN
 
             if (txtTrinhDo.Text.Trim() == "")
             {
-                MessageBox.Show("Ten lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Trình độ không được bỏ trống", "", MessageBoxButtons.OK);
                 txtTrinhDo.Focus();
                 return false;
             }
@@ -82,35 +131,35 @@ namespace THI_TN
 
             if (txtA.Text.Trim() == "")
             {
-                MessageBox.Show("Mat khau khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Câu trả lời A không được bỏ trống", "", MessageBoxButtons.OK);
                 txtA.Focus();
                 return false;
             }
 
             if (txtB.Text.Trim() == "")
             {
-                MessageBox.Show("Ten lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Câu trả lời B không được bỏ trống", "", MessageBoxButtons.OK);
                 txtB.Focus();
                 return false;
             }
 
             if (txtC.Text.Trim() == "")
             {
-                MessageBox.Show("Ten lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Câu trả lời C không được bỏ trống", "", MessageBoxButtons.OK);
                 txtC.Focus();
                 return false;
             }
 
             if (txtD.Text.Trim() == "")
             {
-                MessageBox.Show("Ten lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Câu trả lời D không được bỏ trống", "", MessageBoxButtons.OK);
                 txtD.Focus();
                 return false;
             }
 
             if (txtDapAn.Text.Trim() == "" && (txtDapAn.Text.Trim() != "A" && txtDapAn.Text.Trim() != "B" && txtDapAn.Text.Trim() != "C" && txtDapAn.Text.Trim() != "D"))
             {
-                MessageBox.Show("Dap an khong duoc bo trong va khac A B C D", "", MessageBoxButtons.OK);
+                MessageBox.Show("Đáp án không được bỏ trống và khác A B C D", "", MessageBoxButtons.OK);
                 txtD.Focus();
                 return false;
             }
@@ -121,22 +170,29 @@ namespace THI_TN
         {
             if (ValicateBoDe() == true)
             {
-                try
+                if (MessageBox.Show("Bạn có thật sự muốn ghi bộ đề này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    bdsBoDe.EndEdit();
-                    bdsBoDe.ResetCurrentItem();
-                    this.bdsBoDe.DataSource = this.DS.BODE;
-                    this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.BODETableAdapter.Update(this.DS.BODE);
-                    /* sINHVIENGridControl.Enabled = true;*/
-                    /* btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                     btnGhi.Enabled = btnPhucHoi.Enabled = false;*/
-                }
-                catch (SqlException ex)
-                {
-                    Console.Write(ex.ToString());
-                    MessageBox.Show("Loi ghi bo de", ex.Message, MessageBoxButtons.OK);
-                    return;
+                    try
+                    {
+                        bdsBoDe.EndEdit();
+                        bdsBoDe.ResetCurrentItem();
+                        this.bdsBoDe.DataSource = this.DS.BODE;
+                        this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.BODETableAdapter.Update(this.DS.BODE);
+
+
+
+                        btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+                        btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                        panelControl2.Enabled = false;
+                        bODEGridControl.Enabled = true;
+                    }
+                    catch (SqlException ex)
+                    {
+                        Console.Write(ex.ToString());
+                        MessageBox.Show("Lỗi ghi bộ đề", ex.Message, MessageBoxButtons.OK);
+                        return;
+                    }
                 }
             }
             else
@@ -148,13 +204,13 @@ namespace THI_TN
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string maBode = "";
-            // check data grid have rows > 0 
-           /* if (bdsBangDiem.Count > 0)
+
+            if (bdsCTBAITHI.Count > 0)
             {
-                MessageBox.Show("Khong the xoa sinh vien nay vi da dang ki mon", "", MessageBoxButtons.OK);
+                MessageBox.Show("Bộ đề này đã được cho thi", "", MessageBoxButtons.OK);
                 return;
-            }*/
-            if (MessageBox.Show("Ban co that su muon xoa sinh vien nay khong?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            } 
+            if (MessageBox.Show("Bạn có thật sự muốn xóa bộ đề này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -183,10 +239,8 @@ namespace THI_TN
             bdsBoDe.CancelEdit();
             if (btnAdd.Enabled == false) bdsBoDe.Position = vitri;
             bODEGridControl.Enabled = true;
-            /*panelControl2.Enabled = true;*/
-            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
-            frmBoDe_Load(sender, e);
             if (vitri > 0)
             {
                 bdsBoDe.Position = vitri;
@@ -207,11 +261,12 @@ namespace THI_TN
 
                 this.BODETableAdapter.Connection.ConnectionString = Program.connstr;
                 this.BODETableAdapter.Fill(this.DS.BODE);
-                loadBoDe();
-                cbxMonHoc.DataSource = bdsMonHoc;
-                cbxMonHoc.DisplayMember = "TENMH";
-                cbxMonHoc.ValueMember = "MAMH";
+                if (Program.mGroup == "GV")
+                {
+                    loadBoDe();
+                }
                 txtMAGV.Text = Program.username;
+
             }
             catch (Exception ex)
             {
@@ -228,9 +283,21 @@ namespace THI_TN
             }
         }
 
-        private void cbxTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
+        private void bLabel_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(cbxMonHoc.SelectedIndex);
+
+        }
+
+        private void cbxMonHoc_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cbxMonHoc.SelectedValue != null)
+            {
+                txtMAMH.Text = cbxMonHoc.SelectedValue.ToString();
+            }
+        }
+
+        private void cbxTrinhDo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
             if (cbxTrinhDo.SelectedIndex == 0)
             {
                 txtTrinhDo.Text = "A";
@@ -243,7 +310,111 @@ namespace THI_TN
             {
                 txtTrinhDo.Text = "C";
             }
-
         }
+
+
+        private void loadCbxTrinhDo(object sender, MouseEventArgs e)
+        {
+            if (txtTrinhDo.Text == "A")
+            {
+                cbxTrinhDo.SelectedIndex = 0;
+            }
+            else if (txtTrinhDo.Text == "B")
+            {
+                cbxTrinhDo.SelectedIndex = 1;
+            }
+            else
+            {
+                cbxTrinhDo.SelectedIndex = 2;
+            }
+
+
+
+            if (txtDapAn.Text == "A")
+            {
+                cbxDapAn.SelectedIndex = 0;
+            }
+            else if (txtDapAn.Text == "B")
+            {
+                cbxDapAn.SelectedIndex = 1;
+            }
+            else if (txtDapAn.Text == "C")
+            {
+                cbxDapAn.SelectedIndex = 2;
+            }
+            else
+            {
+                cbxDapAn.SelectedIndex = 3;
+            }
+        }
+
+        private void loadCbxTrinhDo( )
+        {
+            if (txtTrinhDo.Text == "A")
+            {
+                cbxTrinhDo.SelectedIndex = 0;
+            }
+            else if (txtTrinhDo.Text == "B")
+            {
+                cbxTrinhDo.SelectedIndex = 1;
+            }
+            else
+            {
+                cbxTrinhDo.SelectedIndex = 2;
+            }
+        }
+
+        private void cbxDapAn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxDapAn.SelectedIndex == 0)
+            {
+                txtDapAn.Text = "A";
+            }
+            else if (cbxDapAn.SelectedIndex == 1)
+            {
+                txtDapAn.Text = "B";
+            }
+            else if (cbxDapAn.SelectedIndex == 2)
+            {
+                txtDapAn.Text = "C";
+            }
+            else
+            {
+                txtDapAn.Text = "D";
+            }
+        }
+
+        private void loadCbxDapAn()
+        {
+            if (txtDapAn.Text == "A")
+            {
+                cbxDapAn.SelectedIndex = 0;
+            }
+            else if (txtDapAn.Text == "B")
+            {
+                cbxDapAn.SelectedIndex = 1;
+            }
+            else if (txtDapAn.Text == "C")
+            {
+                cbxDapAn.SelectedIndex = 2;
+            }
+            else
+            {
+                cbxDapAn.SelectedIndex = 3;
+            }
+        }
+
     }
 }
+/*if (txtTrinhDo.Text == "A")
+{
+    cbxTrinhDo.SelectedIndex = 0;
+}
+else if (txtTrinhDo.Text == "B")
+{
+    cbxTrinhDo.SelectedIndex = 1;
+}
+else
+{
+    cbxTrinhDo.SelectedIndex = 2;
+}*/

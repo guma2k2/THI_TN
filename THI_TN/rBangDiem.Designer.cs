@@ -36,12 +36,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rBangDiem));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
-            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.pageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.pageInfo2 = new DevExpress.XtraReports.UI.XRPageInfo();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.label1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.table1 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -49,6 +48,7 @@
             this.tableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.table2 = new DevExpress.XtraReports.UI.XRTable();
             this.tableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.tableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -77,28 +77,6 @@
             this.pageInfo2});
             this.BottomMargin.Name = "BottomMargin";
             // 
-            // ReportHeader
-            // 
-            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.label1});
-            this.ReportHeader.HeightF = 60F;
-            this.ReportHeader.Name = "ReportHeader";
-            // 
-            // GroupHeader1
-            // 
-            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.table1});
-            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
-            this.GroupHeader1.HeightF = 28F;
-            this.GroupHeader1.Name = "GroupHeader1";
-            // 
-            // Detail
-            // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.table2});
-            this.Detail.HeightF = 25F;
-            this.Detail.Name = "Detail";
-            // 
             // pageInfo1
             // 
             this.pageInfo1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
@@ -116,6 +94,13 @@
             this.pageInfo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             this.pageInfo2.TextFormatString = "Page {0} of {1}";
             // 
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.label1});
+            this.ReportHeader.HeightF = 60F;
+            this.ReportHeader.Name = "ReportHeader";
+            // 
             // label1
             // 
             this.label1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
@@ -123,8 +108,16 @@
             this.label1.SizeF = new System.Drawing.SizeF(650F, 24.19433F);
             this.label1.StyleName = "Title";
             this.label1.StylePriority.UseTextAlignment = false;
-            this.label1.Text = "Bang diem";
+            this.label1.Text = "Bảng điểm";
             this.label1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // GroupHeader1
+            // 
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table1});
+            this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
+            this.GroupHeader1.HeightF = 28F;
+            this.GroupHeader1.Name = "GroupHeader1";
             // 
             // table1
             // 
@@ -151,21 +144,21 @@
             this.tableCell1.Name = "tableCell1";
             this.tableCell1.StyleName = "DetailCaption1";
             this.tableCell1.StylePriority.UseBorders = false;
-            this.tableCell1.Text = "MASV";
+            this.tableCell1.Text = "MÃ SINH VIÊN";
             this.tableCell1.Weight = 0.20903639573317306D;
             // 
             // tableCell2
             // 
             this.tableCell2.Name = "tableCell2";
             this.tableCell2.StyleName = "DetailCaption1";
-            this.tableCell2.Text = "HO";
+            this.tableCell2.Text = "HỌ";
             this.tableCell2.Weight = 0.13852467463566706D;
             // 
             // tableCell3
             // 
             this.tableCell3.Name = "tableCell3";
             this.tableCell3.StyleName = "DetailCaption1";
-            this.tableCell3.Text = "TEN";
+            this.tableCell3.Text = "TÊN";
             this.tableCell3.Weight = 0.16390393770658052D;
             // 
             // tableCell4
@@ -173,7 +166,7 @@
             this.tableCell4.Name = "tableCell4";
             this.tableCell4.StyleName = "DetailCaption1";
             this.tableCell4.StylePriority.UseTextAlignment = false;
-            this.tableCell4.Text = "DIEM";
+            this.tableCell4.Text = "ĐIỂM";
             this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell4.Weight = 0.189283200777494D;
             // 
@@ -182,9 +175,16 @@
             this.tableCell5.Name = "tableCell5";
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.StylePriority.UseTextAlignment = false;
-            this.tableCell5.Text = "DIEMCHU";
+            this.tableCell5.Text = "ĐIỂM CHỮ";
             this.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell5.Weight = 0.29925177940955527D;
+            // 
+            // Detail
+            // 
+            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.table2});
+            this.Detail.HeightF = 25F;
+            this.Detail.Name = "Detail";
             // 
             // table2
             // 

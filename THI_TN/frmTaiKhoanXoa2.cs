@@ -95,14 +95,19 @@ namespace THI_TN
         {
             String queryXoaTaiKhoan = "DECLARE @return_value int \n" +
                 "EXEC @return_value = [dbo].[SP_TAIKHOAN_DELETE] \n " +
-                "@loginanme = N'" + txtTaiKhoan.Text.Trim() + "', \n " +
-                "@username = N'" + txtMANV.Text.Trim() + "',\n " +
+                "@loginname = N'" + txtTaiKhoan.Text.Trim() + "', \n " +
+                "@username = N'" + txtMANV.Text.Trim() + "'\n " +
                 "SELECT 'Return Value' = @return_value";
             Console.WriteLine(queryXoaTaiKhoan);
 
             try
             {
                 int resultMa = Program.CheckDataHelper(queryXoaTaiKhoan);
+                if (resultMa == 0)
+                {
+                    XtraMessageBox.Show("Tạo tài khoản thành công", "", MessageBoxButtons.OK);
+                    frmTaiKhoanXoa2_Load(sender, e);
+                }
             }
             catch (SqlException ex)
             {

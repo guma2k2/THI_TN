@@ -25,7 +25,7 @@ namespace THI_TN
         {
             string malop = cbxLop.SelectedValue.ToString();
             string maMonHoc = cbxMonHoc.SelectedValue.ToString();
-            int lan = int.Parse(txtLan.Text.ToString());
+            int lan = int.Parse(cbxLan.SelectedValue.ToString());
             rBangDiem rpt = new rBangDiem(malop, maMonHoc, lan);
             ReportPrintTool rptool = new ReportPrintTool(rpt);
             rptool.ShowPreviewDialog();
@@ -38,6 +38,21 @@ namespace THI_TN
 
         private void frmReportBangDiem_Load(object sender, EventArgs e)
         {
+
+            cbxCoSo.DataSource = Program.bds_dspm;
+            cbxCoSo.DisplayMember = "TENCOSO";
+            cbxCoSo.ValueMember = "TENSERVER";
+            Console.WriteLine(Program.mChiNhanh);
+            cbxCoSo.SelectedIndex = Program.mChiNhanh;
+
+            if (Program.mGroup == "CoSo")
+            {
+                cbxCoSo.Enabled = false;
+            }
+            else if (Program.mGroup == "Truong")
+            {
+                cbxCoSo.Enabled = true;
+            }
             loadComboboxLop();
         }
 
@@ -52,6 +67,12 @@ namespace THI_TN
             cbxLop.DataSource = bdsLop;
             cbxLop.DisplayMember = "TENLOP";
             cbxLop.ValueMember = "MALOP";
+
+            if (cbxLop.SelectedValue != null)
+            {
+                string malop = cbxLop.SelectedValue.ToString();
+                loadComboboxMonHoc(malop);
+            }
         }
 
         private void cbxLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,6 +92,56 @@ namespace THI_TN
             cbxMonHoc.DataSource = bdsMonHoc;
             cbxMonHoc.DisplayMember = "TENMH";
             cbxMonHoc.ValueMember = "MAMH";
+
+           if (cbxMonHoc.SelectedValue != null)
+            {
+                loadComboxboxLan();
+            }
+        }
+
+        private void loadComboxboxLan()
+        {
+            string malop = cbxLop.SelectedValue.ToString();
+            string mamh = cbxMonHoc.SelectedValue.ToString();
+            DataTable dt = new DataTable();
+            string cmd = "EXEC [dbo].[SP_REPORT_BANGDIEM_MH_GET_LAN] '" + malop + "', '" + mamh +  "'";
+            dt = Program.ExecSqlQuery(cmd);
+
+            BindingSource bdsLan = new BindingSource();
+            bdsLan.DataSource = dt;
+            cbxLan.DataSource = bdsLan;
+            cbxLan.DisplayMember = "LAN";
+            cbxLan.ValueMember = "LAN";
+        }
+
+        private void cbxCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxCoSo.SelectedValue.ToString() == "System.Data.DataRowView")
+            {
+                return;
+            }
+
+            Program.servername = cbxCoSo.SelectedValue.ToString();
+            if (cbxCoSo.SelectedIndex != Program.mChiNhanh)
+            {
+                Program.mlogin = Program.remoteLogin;
+                Program.password = Program.remotePassowrd;
+            }
+            else
+            {
+                Program.mlogin = Program.mLoginDN;
+                Program.password = Program.passwordDN;
+
+            }
+
+            if (Program.KetNoi() == 0)
+            {
+                MessageBox.Show("Loi ket noi ve co so moi", "", MessageBoxButtons.OK);
+            }
+            else
+            {
+                loadComboboxLop();
+            }
         }
     }
 

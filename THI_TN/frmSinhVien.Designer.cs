@@ -36,6 +36,7 @@
             System.Windows.Forms.Label dIACHILabel;
             System.Windows.Forms.Label mALOPLabel1;
             System.Windows.Forms.Label pASSWORDLabel;
+            System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
@@ -44,8 +45,8 @@
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLamMoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -69,6 +70,7 @@
             this.bdsSV = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
+            this.cbxLop = new System.Windows.Forms.ComboBox();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.txtMALOP = new DevExpress.XtraEditors.TextEdit();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
@@ -77,7 +79,7 @@
             this.txtHo = new DevExpress.XtraEditors.TextEdit();
             this.txtMASV = new DevExpress.XtraEditors.TextEdit();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
-            this.cbxLop = new System.Windows.Forms.ComboBox();
+            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -85,6 +87,7 @@
             dIACHILabel = new System.Windows.Forms.Label();
             mALOPLabel1 = new System.Windows.Forms.Label();
             pASSWORDLabel = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -115,66 +118,75 @@
             // mASVLabel
             // 
             mASVLabel.AutoSize = true;
-            mASVLabel.Location = new System.Drawing.Point(51, 33);
+            mASVLabel.Location = new System.Drawing.Point(55, 17);
             mASVLabel.Name = "mASVLabel";
-            mASVLabel.Size = new System.Drawing.Size(46, 16);
+            mASVLabel.Size = new System.Drawing.Size(83, 16);
             mASVLabel.TabIndex = 0;
-            mASVLabel.Text = "MASV:";
+            mASVLabel.Text = "Mã sinh viên:";
             // 
             // hOLabel
             // 
             hOLabel.AutoSize = true;
-            hOLabel.Location = new System.Drawing.Point(339, 33);
+            hOLabel.Location = new System.Drawing.Point(101, 50);
             hOLabel.Name = "hOLabel";
-            hOLabel.Size = new System.Drawing.Size(29, 16);
+            hOLabel.Size = new System.Drawing.Size(31, 16);
             hOLabel.TabIndex = 2;
-            hOLabel.Text = "HO:";
+            hOLabel.Text = "Họ: ";
             // 
             // tENLabel
             // 
             tENLabel.AutoSize = true;
-            tENLabel.Location = new System.Drawing.Point(52, 77);
+            tENLabel.Location = new System.Drawing.Point(98, 77);
             tENLabel.Name = "tENLabel";
-            tENLabel.Size = new System.Drawing.Size(35, 16);
+            tENLabel.Size = new System.Drawing.Size(34, 16);
             tENLabel.TabIndex = 4;
-            tENLabel.Text = "TEN:";
+            tENLabel.Text = "Tên:";
             // 
             // nGAYSINHLabel
             // 
             nGAYSINHLabel.AutoSize = true;
-            nGAYSINHLabel.Location = new System.Drawing.Point(317, 77);
+            nGAYSINHLabel.Location = new System.Drawing.Point(61, 105);
             nGAYSINHLabel.Name = "nGAYSINHLabel";
-            nGAYSINHLabel.Size = new System.Drawing.Size(71, 16);
+            nGAYSINHLabel.Size = new System.Drawing.Size(67, 16);
             nGAYSINHLabel.TabIndex = 6;
-            nGAYSINHLabel.Text = "NGAYSINH:";
+            nGAYSINHLabel.Text = "Ngày sinh:";
             nGAYSINHLabel.Click += new System.EventHandler(this.nGAYSINHLabel_Click);
             // 
             // dIACHILabel
             // 
             dIACHILabel.AutoSize = true;
-            dIACHILabel.Location = new System.Drawing.Point(45, 126);
+            dIACHILabel.Location = new System.Drawing.Point(80, 136);
             dIACHILabel.Name = "dIACHILabel";
-            dIACHILabel.Size = new System.Drawing.Size(52, 16);
+            dIACHILabel.Size = new System.Drawing.Size(51, 16);
             dIACHILabel.TabIndex = 8;
-            dIACHILabel.Text = "DIACHI:";
+            dIACHILabel.Text = "Địa chỉ:";
             // 
             // mALOPLabel1
             // 
             mALOPLabel1.AutoSize = true;
-            mALOPLabel1.Location = new System.Drawing.Point(35, 216);
+            mALOPLabel1.Location = new System.Drawing.Point(76, 242);
             mALOPLabel1.Name = "mALOPLabel1";
-            mALOPLabel1.Size = new System.Drawing.Size(52, 16);
+            mALOPLabel1.Size = new System.Drawing.Size(50, 16);
             mALOPLabel1.TabIndex = 12;
-            mALOPLabel1.Text = "MALOP:";
+            mALOPLabel1.Text = "Mã lớp:";
             // 
             // pASSWORDLabel
             // 
             pASSWORDLabel.AutoSize = true;
-            pASSWORDLabel.Location = new System.Drawing.Point(17, 160);
+            pASSWORDLabel.Location = new System.Drawing.Point(52, 168);
             pASSWORDLabel.Name = "pASSWORDLabel";
-            pASSWORDLabel.Size = new System.Drawing.Size(80, 16);
+            pASSWORDLabel.Size = new System.Drawing.Size(64, 16);
             pASSWORDLabel.TabIndex = 13;
-            pASSWORDLabel.Text = "PASSWORD:";
+            pASSWORDLabel.Text = "Mật khẩu:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(76, 209);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(55, 16);
+            label2.TabIndex = 16;
+            label2.Text = "Tên lớp:";
             // 
             // barManager1
             // 
@@ -194,9 +206,10 @@
             this.btnXoa,
             this.btnPhucHoi,
             this.btnThoat,
-            this.barButtonItem5});
+            this.btnLamMoi,
+            this.btnHuy});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 7;
+            this.barManager1.MaxItemId = 9;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -211,13 +224,14 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnLamMoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.barButtonItem5, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar1.Text = "Tools";
             // 
             // btnAdd
             // 
-            this.btnAdd.Caption = "Them";
+            this.btnAdd.Caption = "Thêm";
             this.btnAdd.Id = 0;
             this.btnAdd.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.Image")));
             this.btnAdd.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.ImageOptions.LargeImage")));
@@ -226,7 +240,7 @@
             // 
             // btnSua
             // 
-            this.btnSua.Caption = "Sua";
+            this.btnSua.Caption = "Sửa";
             this.btnSua.Hint = "Sua";
             this.btnSua.Id = 1;
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
@@ -245,7 +259,7 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Caption = "Xoa";
+            this.btnXoa.Caption = "Xóa";
             this.btnXoa.Id = 3;
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
@@ -254,30 +268,30 @@
             // 
             // btnPhucHoi
             // 
-            this.btnPhucHoi.Caption = "Phuc hoi";
+            this.btnPhucHoi.Caption = "Phục hồi";
             this.btnPhucHoi.Id = 4;
             this.btnPhucHoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.Image")));
             this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
             this.btnPhucHoi.Name = "btnPhucHoi";
             this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Caption = "Làm mới";
+            this.btnLamMoi.Id = 6;
+            this.btnLamMoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.Image")));
+            this.btnLamMoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.LargeImage")));
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
+            // 
             // btnThoat
             // 
-            this.btnThoat.Caption = "Thoat";
+            this.btnThoat.Caption = "Thoát";
             this.btnThoat.Id = 5;
             this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
             this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
-            // 
-            // barButtonItem5
-            // 
-            this.barButtonItem5.Caption = "Lam moi";
-            this.barButtonItem5.Id = 6;
-            this.barButtonItem5.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.Image")));
-            this.barButtonItem5.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem5.ImageOptions.LargeImage")));
-            this.barButtonItem5.Name = "barButtonItem5";
-            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // bar2
             // 
@@ -345,6 +359,7 @@
             // 
             // cbxCoSo
             // 
+            this.cbxCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCoSo.FormattingEnabled = true;
             this.cbxCoSo.Location = new System.Drawing.Point(385, 11);
             this.cbxCoSo.Name = "cbxCoSo";
@@ -459,6 +474,7 @@
             // 
             // panelControl4
             // 
+            this.panelControl4.Controls.Add(label2);
             this.panelControl4.Controls.Add(this.cbxLop);
             this.panelControl4.Controls.Add(pASSWORDLabel);
             this.panelControl4.Controls.Add(this.txtPassword);
@@ -480,75 +496,84 @@
             this.panelControl4.Size = new System.Drawing.Size(579, 334);
             this.panelControl4.TabIndex = 9;
             // 
+            // cbxLop
+            // 
+            this.cbxLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLop.FormattingEnabled = true;
+            this.cbxLop.Location = new System.Drawing.Point(156, 201);
+            this.cbxLop.Name = "cbxLop";
+            this.cbxLop.Size = new System.Drawing.Size(387, 24);
+            this.cbxLop.TabIndex = 15;
+            // 
             // txtPassword
             // 
             this.txtPassword.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "PASSWORD", true));
-            this.txtPassword.Location = new System.Drawing.Point(103, 157);
+            this.txtPassword.Location = new System.Drawing.Point(156, 165);
             this.txtPassword.MenuManager = this.barManager1;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.UseSystemPasswordChar = true;
-            this.txtPassword.Size = new System.Drawing.Size(125, 22);
+            this.txtPassword.Size = new System.Drawing.Size(387, 22);
             this.txtPassword.TabIndex = 14;
             // 
             // txtMALOP
             // 
             this.txtMALOP.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "MALOP", true));
             this.txtMALOP.Enabled = false;
-            this.txtMALOP.Location = new System.Drawing.Point(243, 208);
+            this.txtMALOP.Location = new System.Drawing.Point(157, 239);
             this.txtMALOP.MenuManager = this.barManager1;
             this.txtMALOP.Name = "txtMALOP";
-            this.txtMALOP.Size = new System.Drawing.Size(125, 22);
+            this.txtMALOP.Size = new System.Drawing.Size(386, 22);
             this.txtMALOP.TabIndex = 13;
             // 
             // txtDiaChi
             // 
             this.txtDiaChi.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "DIACHI", true));
-            this.txtDiaChi.Location = new System.Drawing.Point(103, 123);
+            this.txtDiaChi.Location = new System.Drawing.Point(156, 133);
             this.txtDiaChi.MenuManager = this.barManager1;
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(125, 22);
+            this.txtDiaChi.Size = new System.Drawing.Size(387, 22);
             this.txtDiaChi.TabIndex = 9;
             // 
             // txtNgaySinh
             // 
             this.txtNgaySinh.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "NGAYSINH", true));
             this.txtNgaySinh.EditValue = null;
-            this.txtNgaySinh.Location = new System.Drawing.Point(389, 74);
+            this.txtNgaySinh.Location = new System.Drawing.Point(156, 103);
             this.txtNgaySinh.MenuManager = this.barManager1;
             this.txtNgaySinh.Name = "txtNgaySinh";
             this.txtNgaySinh.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtNgaySinh.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtNgaySinh.Size = new System.Drawing.Size(125, 22);
+            this.txtNgaySinh.Size = new System.Drawing.Size(387, 22);
             this.txtNgaySinh.TabIndex = 7;
             this.txtNgaySinh.EditValueChanged += new System.EventHandler(this.nGAYSINHDateEdit_EditValueChanged);
             // 
             // txtTen
             // 
             this.txtTen.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "TEN", true));
-            this.txtTen.Location = new System.Drawing.Point(103, 71);
+            this.txtTen.Location = new System.Drawing.Point(156, 75);
             this.txtTen.MenuManager = this.barManager1;
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(125, 22);
+            this.txtTen.Size = new System.Drawing.Size(387, 22);
             this.txtTen.TabIndex = 5;
             // 
             // txtHo
             // 
             this.txtHo.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "HO", true));
-            this.txtHo.Location = new System.Drawing.Point(389, 30);
+            this.txtHo.Location = new System.Drawing.Point(156, 47);
             this.txtHo.MenuManager = this.barManager1;
             this.txtHo.Name = "txtHo";
-            this.txtHo.Size = new System.Drawing.Size(125, 22);
+            this.txtHo.Size = new System.Drawing.Size(387, 22);
             this.txtHo.TabIndex = 3;
             // 
             // txtMASV
             // 
             this.txtMASV.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSV, "MASV", true));
-            this.txtMASV.Location = new System.Drawing.Point(103, 30);
+            this.txtMASV.Location = new System.Drawing.Point(156, 14);
             this.txtMASV.MenuManager = this.barManager1;
             this.txtMASV.Name = "txtMASV";
-            this.txtMASV.Size = new System.Drawing.Size(125, 22);
+            this.txtMASV.Size = new System.Drawing.Size(387, 22);
             this.txtMASV.TabIndex = 1;
             // 
             // bdsBangDiem
@@ -556,13 +581,14 @@
             this.bdsBangDiem.DataMember = "FK_BANGDIEM_SINHVIEN1";
             this.bdsBangDiem.DataSource = this.bdsSV;
             // 
-            // cbxLop
+            // btnHuy
             // 
-            this.cbxLop.FormattingEnabled = true;
-            this.cbxLop.Location = new System.Drawing.Point(102, 208);
-            this.cbxLop.Name = "cbxLop";
-            this.cbxLop.Size = new System.Drawing.Size(126, 24);
-            this.cbxLop.TabIndex = 15;
+            this.btnHuy.Caption = "Hủy";
+            this.btnHuy.Id = 8;
+            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnHuy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // frmSinhVien
             // 
@@ -622,7 +648,7 @@
         private DevExpress.XtraBars.BarButtonItem btnXoa;
         private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarButtonItem btnLamMoi;
         private DevExpress.XtraBars.Bar bar2;
         private DevExpress.XtraBars.Bar bar3;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
@@ -655,5 +681,6 @@
         private DevExpress.XtraEditors.TextEdit txtMALOP;
         private DevExpress.XtraEditors.TextEdit txtPassword;
         private System.Windows.Forms.ComboBox cbxLop;
+        private DevExpress.XtraBars.BarButtonItem btnHuy;
     }
 }

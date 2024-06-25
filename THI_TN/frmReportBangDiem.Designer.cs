@@ -31,18 +31,19 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbxMonHoc = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnIn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxLop = new System.Windows.Forms.ComboBox();
-            this.btnIn = new System.Windows.Forms.Button();
-            this.txtLan = new DevExpress.XtraEditors.TextEdit();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbxMonHoc = new System.Windows.Forms.ComboBox();
+            this.cbxCoSo = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbxLan = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -50,7 +51,7 @@
             this.panelControl1.Controls.Add(this.label2);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(5);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1141, 125);
             this.panelControl1.TabIndex = 3;
@@ -62,13 +63,15 @@
             this.label2.Location = new System.Drawing.Point(496, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(221, 28);
+            this.label2.Size = new System.Drawing.Size(214, 28);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Bang diem mon hoc ";
+            this.label2.Text = "Bảng điểm môn học";
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.txtLan);
+            this.panelControl2.Controls.Add(this.cbxLan);
+            this.panelControl2.Controls.Add(this.cbxCoSo);
+            this.panelControl2.Controls.Add(this.label8);
             this.panelControl2.Controls.Add(this.label4);
             this.panelControl2.Controls.Add(this.btnIn);
             this.panelControl2.Controls.Add(this.label3);
@@ -77,66 +80,11 @@
             this.panelControl2.Controls.Add(this.cbxMonHoc);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 125);
-            this.panelControl2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(4);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1141, 589);
             this.panelControl2.TabIndex = 4;
             this.panelControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl2_Paint);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(370, 104);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Mon hoc";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbxMonHoc
-            // 
-            this.cbxMonHoc.FormattingEnabled = true;
-            this.cbxMonHoc.Location = new System.Drawing.Point(470, 104);
-            this.cbxMonHoc.Name = "cbxMonHoc";
-            this.cbxMonHoc.Size = new System.Drawing.Size(359, 24);
-            this.cbxMonHoc.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(370, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 16);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Lop";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // cbxLop
-            // 
-            this.cbxLop.FormattingEnabled = true;
-            this.cbxLop.Location = new System.Drawing.Point(470, 58);
-            this.cbxLop.Name = "cbxLop";
-            this.cbxLop.Size = new System.Drawing.Size(359, 24);
-            this.cbxLop.TabIndex = 4;
-            this.cbxLop.SelectedIndexChanged += new System.EventHandler(this.cbxLop_SelectedIndexChanged);
-            // 
-            // btnIn
-            // 
-            this.btnIn.Location = new System.Drawing.Point(373, 216);
-            this.btnIn.Name = "btnIn";
-            this.btnIn.Size = new System.Drawing.Size(456, 23);
-            this.btnIn.TabIndex = 6;
-            this.btnIn.Text = "In Bao Cao";
-            this.btnIn.UseVisualStyleBackColor = true;
-            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
-            // 
-            // txtLan
-            // 
-            this.txtLan.Location = new System.Drawing.Point(470, 157);
-            this.txtLan.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.txtLan.Name = "txtLan";
-            this.txtLan.Size = new System.Drawing.Size(359, 22);
-            this.txtLan.TabIndex = 8;
             // 
             // label4
             // 
@@ -145,8 +93,85 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 16);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Lan";
+            this.label4.Text = "Lần";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // btnIn
+            // 
+            this.btnIn.Location = new System.Drawing.Point(373, 216);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(463, 48);
+            this.btnIn.TabIndex = 6;
+            this.btnIn.Text = "In báo cáo";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(370, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 16);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Lớp";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbxLop
+            // 
+            this.cbxLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLop.FormattingEnabled = true;
+            this.cbxLop.Location = new System.Drawing.Point(470, 58);
+            this.cbxLop.Name = "cbxLop";
+            this.cbxLop.Size = new System.Drawing.Size(359, 24);
+            this.cbxLop.TabIndex = 4;
+            this.cbxLop.SelectedIndexChanged += new System.EventHandler(this.cbxLop_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(370, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 16);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Môn học";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbxMonHoc
+            // 
+            this.cbxMonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMonHoc.FormattingEnabled = true;
+            this.cbxMonHoc.Location = new System.Drawing.Point(470, 104);
+            this.cbxMonHoc.Name = "cbxMonHoc";
+            this.cbxMonHoc.Size = new System.Drawing.Size(359, 24);
+            this.cbxMonHoc.TabIndex = 2;
+            // 
+            // cbxCoSo
+            // 
+            this.cbxCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCoSo.FormattingEnabled = true;
+            this.cbxCoSo.Location = new System.Drawing.Point(470, 8);
+            this.cbxCoSo.Name = "cbxCoSo";
+            this.cbxCoSo.Size = new System.Drawing.Size(359, 24);
+            this.cbxCoSo.TabIndex = 17;
+            this.cbxCoSo.SelectedIndexChanged += new System.EventHandler(this.cbxCoSo_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(377, 11);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 16);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Cơ sở";
+            // 
+            // cbxLan
+            // 
+            this.cbxLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLan.FormattingEnabled = true;
+            this.cbxLan.Location = new System.Drawing.Point(470, 160);
+            this.cbxLan.Name = "cbxLan";
+            this.cbxLan.Size = new System.Drawing.Size(359, 24);
+            this.cbxLan.TabIndex = 18;
             // 
             // frmReportBangDiem
             // 
@@ -164,7 +189,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,7 +203,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbxMonHoc;
         private System.Windows.Forms.Button btnIn;
-        private DevExpress.XtraEditors.TextEdit txtLan;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbxCoSo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cbxLan;
     }
 }

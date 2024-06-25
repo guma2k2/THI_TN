@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils.Extensions;
+using DevExpress.XtraEditors;
 using DevExpress.XtraWaitForm;
 using System;
 using System.Collections.Generic;
@@ -59,7 +60,7 @@ namespace THI_TN
         {
             if (txtLogin.Text.Trim() == "" || txtMK.Text.Trim() == "")
             {
-                MessageBox.Show("Login name va mat khau ko dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không được bỏ trống", "", MessageBoxButtons.OK);
                 return;
             }
 
@@ -78,7 +79,7 @@ namespace THI_TN
                 Program.myReader.Read();
                 if (Program.myReader.HasRows == false)
                 {
-                    MessageBox.Show("DN THAT BAI MA SINH VIEN KHONG TON TAI HOAC MAT KHAU KHONG CHINH XAC");
+                    MessageBox.Show("Đăng nhập thất bại, mã sinh viên không tồn tại hoặc mật khẩu không chính xác");
                     return;
                 }
                 try
@@ -115,12 +116,7 @@ namespace THI_TN
 
             }
 
-            MessageBox.Show("Dang nhap thanh cong");
-
-            /*if (Program.mGroup != "PKT")
-            {
-                LayDSPM("SELECT * FROM [dbo].[GET_Subscribes]");
-            }*/
+            MessageBox.Show("Đăng nhập thành công");
             Form f = new frmMain();
             f.ShowDialog();
         }

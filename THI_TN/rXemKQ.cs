@@ -27,10 +27,13 @@ namespace THI_TN
 
         private void xrLabel3_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            XRLabel label = (XRLabel)sender;
+           /* XRLabel label = (XRLabel)sender;
             string cacluachon = (string)GetCurrentColumnValue("CACLUACHON");
-            string newText = cacluachon.Replace("\n", Environment.NewLine);
-            label.Text = newText;
+            if (cacluachon != null && cacluachon != "")
+            {
+                string newText = cacluachon.Replace("\n", Environment.NewLine);
+                label.Text = newText;
+            }*/
         }
 
         private void tableCell9_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -40,7 +43,16 @@ namespace THI_TN
 
         private void tableCell8_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            /*XRTableCell cell = sender as XRTableCell;
+            if (cell != null)
+            {
+                string originalText = cell.Text;
+                Console.Write(originalText + "sadfasfasd");
 
+                string transformedText = originalText.Replace(" \n ", Environment.NewLine);
+
+                cell.Text = transformedText;
+            }*/
         }
     }
 }

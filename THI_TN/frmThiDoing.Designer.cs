@@ -79,7 +79,7 @@
             // 
             this.radioGroup.Location = new System.Drawing.Point(113, 163);
             this.radioGroup.Name = "radioGroup";
-            this.radioGroup.Size = new System.Drawing.Size(817, 220);
+            this.radioGroup.Size = new System.Drawing.Size(908, 220);
             this.radioGroup.TabIndex = 3;
             this.radioGroup.SelectedIndexChanged += new System.EventHandler(this.radioGroup_SelectedIndexChanged);
             // 
@@ -169,7 +169,7 @@
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(181, 73);
             this.btnPrev.TabIndex = 12;
-            this.btnPrev.Text = "Prev";
+            this.btnPrev.Text = "Câu trước";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
@@ -179,7 +179,7 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(163, 73);
             this.btnNext.TabIndex = 13;
-            this.btnNext.Text = "Next";
+            this.btnNext.Text = "Câu tiếp theo";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
@@ -189,7 +189,7 @@
             this.btnNopBai.Name = "btnNopBai";
             this.btnNopBai.Size = new System.Drawing.Size(166, 77);
             this.btnNopBai.TabIndex = 14;
-            this.btnNopBai.Text = "Nop bai";
+            this.btnNopBai.Text = "Nộp bài";
             this.btnNopBai.UseVisualStyleBackColor = true;
             this.btnNopBai.Click += new System.EventHandler(this.btnNopBai_Click);
             // 
@@ -200,7 +200,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 16);
             this.label1.TabIndex = 15;
-            this.label1.Text = "Thoi gian";
+            this.label1.Text = "Thời gian";
             // 
             // lb_timer
             // 

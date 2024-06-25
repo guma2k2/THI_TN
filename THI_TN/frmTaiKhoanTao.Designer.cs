@@ -74,9 +74,9 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(483, 50);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(162, 33);
+            this.labelControl1.Size = new System.Drawing.Size(170, 34);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Tao tai khoan";
+            this.labelControl1.Text = "Tạo tài khoản";
             // 
             // panelControl2
             // 
@@ -108,10 +108,10 @@
             this.rbGiaoVien.AutoSize = true;
             this.rbGiaoVien.Location = new System.Drawing.Point(340, 379);
             this.rbGiaoVien.Name = "rbGiaoVien";
-            this.rbGiaoVien.Size = new System.Drawing.Size(80, 20);
+            this.rbGiaoVien.Size = new System.Drawing.Size(87, 20);
             this.rbGiaoVien.TabIndex = 20;
             this.rbGiaoVien.TabStop = true;
-            this.rbGiaoVien.Text = "Giao vien";
+            this.rbGiaoVien.Text = "Giảng viên";
             this.rbGiaoVien.UseVisualStyleBackColor = true;
             // 
             // rbCoSo
@@ -119,10 +119,10 @@
             this.rbCoSo.AutoSize = true;
             this.rbCoSo.Location = new System.Drawing.Point(340, 333);
             this.rbCoSo.Name = "rbCoSo";
-            this.rbCoSo.Size = new System.Drawing.Size(56, 20);
+            this.rbCoSo.Size = new System.Drawing.Size(60, 20);
             this.rbCoSo.TabIndex = 19;
             this.rbCoSo.TabStop = true;
-            this.rbCoSo.Text = "Coso";
+            this.rbCoSo.Text = "Cơ sở";
             this.rbCoSo.UseVisualStyleBackColor = true;
             // 
             // rbTruong
@@ -130,41 +130,43 @@
             this.rbTruong.AutoSize = true;
             this.rbTruong.Location = new System.Drawing.Point(340, 285);
             this.rbTruong.Name = "rbTruong";
-            this.rbTruong.Size = new System.Drawing.Size(69, 20);
+            this.rbTruong.Size = new System.Drawing.Size(70, 20);
             this.rbTruong.TabIndex = 18;
             this.rbTruong.TabStop = true;
-            this.rbTruong.Text = "Truong";
+            this.rbTruong.Text = "Trường";
             this.rbTruong.UseVisualStyleBackColor = true;
             // 
             // radioGroup1
             // 
             this.radioGroup1.Location = new System.Drawing.Point(327, 272);
             this.radioGroup1.Name = "radioGroup1";
-            this.radioGroup1.Size = new System.Drawing.Size(302, 128);
+            this.radioGroup1.Size = new System.Drawing.Size(302, 147);
             this.radioGroup1.TabIndex = 17;
             this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
             // 
             // btnThoat
             // 
-            this.btnThoat.Location = new System.Drawing.Point(674, 467);
+            this.btnThoat.Location = new System.Drawing.Point(662, 458);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(177, 23);
+            this.btnThoat.Size = new System.Drawing.Size(173, 43);
             this.btnThoat.TabIndex = 16;
-            this.btnThoat.Text = "Thoat";
+            this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnTaoTK
             // 
             this.btnTaoTK.Location = new System.Drawing.Point(275, 458);
             this.btnTaoTK.Name = "btnTaoTK";
-            this.btnTaoTK.Size = new System.Drawing.Size(177, 23);
+            this.btnTaoTK.Size = new System.Drawing.Size(183, 52);
             this.btnTaoTK.TabIndex = 14;
-            this.btnTaoTK.Text = "Tao tai khoan";
+            this.btnTaoTK.Text = "Tạo tài khoản";
             this.btnTaoTK.UseVisualStyleBackColor = true;
             this.btnTaoTK.Click += new System.EventHandler(this.btnTaoTK_Click);
             // 
             // cbxHoTen
             // 
+            this.cbxHoTen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxHoTen.FormattingEnabled = true;
             this.cbxHoTen.Location = new System.Drawing.Point(327, 56);
             this.cbxHoTen.Name = "cbxHoTen";
@@ -174,6 +176,7 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.Enabled = false;
             this.txtUsername.Location = new System.Drawing.Point(784, 53);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(302, 22);
@@ -208,18 +211,19 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(659, 56);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 16);
+            this.label6.Size = new System.Drawing.Size(88, 16);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Ma nhan vien";
+            this.label6.Text = "Mã nhân viên:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(180, 272);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 16);
+            this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Quyen";
+            this.label5.Text = "Quyền:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label4
             // 
@@ -228,34 +232,34 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 16);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Xac nhan mat khau";
+            this.label4.Text = "Xác nhận mật khẩu";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(176, 158);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 16);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Mat khau";
+            this.label3.Text = "Mật khẩu:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(176, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.Size = new System.Drawing.Size(68, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Tai khoan";
+            this.label2.Text = "Tài khoản:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(176, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 16);
+            this.label1.Size = new System.Drawing.Size(103, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ho va ten nhan vien";
+            this.label1.Text = "Họ tên nhân viên";
             // 
             // frmTaiKhoanTao
             // 

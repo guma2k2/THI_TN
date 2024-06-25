@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace THI_TN
 {
@@ -29,13 +30,17 @@ namespace THI_TN
 
         private void frmKhoaLop_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'DS.COSO' table. You can move, or remove it, as needed.
             DS.EnforceConstraints = false;
             this.GIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
             this.SINHVIENTableAdapter.Fill(this.DS.SINHVIEN);
             this.GIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
             this.LOPTableAdapter.Fill(this.DS.LOP);
             this.KHOATableAdapter.Fill(this.DS.KHOA);
+            this.cOSOTableAdapter.Fill(this.DS.COSO);
 
+
+            this.cOSOTableAdapter.Connection.ConnectionString = Program.connstr;
 
             this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
             this.SINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
@@ -48,10 +53,24 @@ namespace THI_TN
             cbxCoSo.ValueMember = "TENSERVER";
             Console.WriteLine(Program.mChiNhanh);
             cbxCoSo.SelectedIndex = Program.mChiNhanh;
-            if (Program.mGroup != "CoSo")
+
+            cbxKhoa.DataSource = bdsKhoa;
+            cbxKhoa.DisplayMember = "TENKH";
+            cbxKhoa.ValueMember = "MAKH";
+
+            cbxCs.DataSource = bdsCoSo;
+            cbxCs.DisplayMember = "TENCS";
+            cbxCs.ValueMember = "MACS";
+            if (Program.mGroup == "CoSo")
             {
                 cbxCoSo.Enabled = false;
             }
+
+            btnGhiKhoa.Enabled = btnPhucHoi.Enabled = false;
+            btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = false;
+
+            panelControl5.Enabled = panelControl8.Enabled = false;
+
         }
 
 
@@ -108,10 +127,36 @@ namespace THI_TN
             txtMaKhoa.Enabled = true;
             bdsKhoa.AddNew();
             txtMaCS.Text = ((DataRowView)bdsKhoa[0])["MACS"].ToString();
-            btnAddKhoa.Enabled = btnSuaKhoa.Enabled =btnXoaKhoa.Enabled = false;
+            btnAddKhoa.Enabled = btnSuaKhoa.Enabled =btnXoaKhoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
             btnGhiKhoa.Enabled = btnPhucHoi.Enabled = true;
+            panelControl5.Enabled = true;
+            kHOAGridControl.Enabled = false;
+
+            Boolean disableLop = false;
+            updateStatusOfLop(disableLop);
             txtMaKhoa.Focus();
         }
+
+
+        private void updateStatusOfLop(Boolean status)
+        {
+
+            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = status;
+            btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = status;
+            panelControl8.Enabled = status;
+            lOPGridControl.Enabled = status;
+        }
+
+
+        private void updateStatusOfKhoa(Boolean status)
+        {
+
+            btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = status;
+            btnGhiKhoa.Enabled = btnPhucHoi.Enabled = status;
+            panelControl5.Enabled = status;
+            kHOAGridControl.Enabled = status;
+        }
+
 
         private void btnSuaKhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -120,8 +165,15 @@ namespace THI_TN
             oldMaKhoa = txtMaKhoa.Text.Trim();
             oldTenKhoa = txtTenKhoa.Text.Trim();
 
-            btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = false;
+            btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
             btnGhiKhoa.Enabled = btnPhucHoi.Enabled = true;
+            panelControl4.Enabled = true;
+            kHOAGridControl.Enabled = false;
+
+            Boolean statusLop = false;
+            updateStatusOfLop(statusLop);
+
+
             txtMaKhoa.Enabled = false;
         }
 
@@ -137,8 +189,14 @@ namespace THI_TN
                     this.KHOATableAdapter.Update(this.DS.KHOA);
 
 
-                    btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = true;
+                    btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
                     btnGhiKhoa.Enabled = btnPhucHoi.Enabled = false;
+                    panelControl4.Enabled = false;
+                    panelControl8.Enabled = false;
+                    kHOAGridControl.Enabled = true;
+                    Boolean statusLop = true;
+                    updateStatusOfLop(statusLop);
+
                 }
                 catch (Exception ex)
                 {
@@ -157,13 +215,13 @@ namespace THI_TN
         {
             if (txtMaKhoa.Text.Trim() == "")
             {
-                MessageBox.Show("Ma khoa khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Mã khoa không được bỏ trống", "", MessageBoxButtons.OK);
                 txtMaKhoa.Focus();
                 return false;
             }
             if (txtTenKhoa.Text.Trim() == "")
             {
-                MessageBox.Show("Ten khoa khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Tên khoa không được bỏ trống", "", MessageBoxButtons.OK);
                 txtTenKhoa.Focus();
                 return false;
             }
@@ -183,17 +241,17 @@ namespace THI_TN
 
                 if (resultMa == -1)
                 {
-                    XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultMa == 1)
                 {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Mã khoa đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultMa == 2)
                 {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Mã khoa đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                     return false;
                 }
 
@@ -206,12 +264,17 @@ namespace THI_TN
 
                 if (resultTen == -1)
                 {
-                    XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultTen == 1)
                 {
-                    XtraMessageBox.Show("Ten mon hoc da ton tai ", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Tên khoa đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                else if (resultTen == 2)
+                {
+                    XtraMessageBox.Show("Tên khoa đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                     return false;
                 }
 
@@ -229,17 +292,17 @@ namespace THI_TN
 
                     if (resultMa == -1)
                     {
-                        XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultMa == 1)
                     {
-                        XtraMessageBox.Show("Ma sinh vien da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã khoa đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultMa == 2)
                     {
-                        XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã khoa đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                         return false;
                     }
                 }
@@ -254,12 +317,17 @@ namespace THI_TN
 
                     if (resultTen == -1)
                     {
-                        XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultTen == 1)
                     {
-                        XtraMessageBox.Show("Ten mon hoc da ton tai ", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Tên khoa đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
+                        return false;
+                    }
+                    else if (resultTen == 2)
+                    {
+                        XtraMessageBox.Show("Tên khoa đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                         return false;
                     }
                 }
@@ -270,13 +338,20 @@ namespace THI_TN
         private void btnXoaKhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string maKhoa = "";
-            // check data grid have rows > 0 
-            if (bdsLop.Count > 0 || bdsGV.Count > 0)
+            if (bdsLop.Count > 0)
             {
-                MessageBox.Show("Khong the xoa khoa nay", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể xóa khoa này do khóa này đang có lớp", "", MessageBoxButtons.OK);
                 return;
             }
-            if (MessageBox.Show("Ban co that su muon xoa khoa nay khong?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+
+            if (bdsGV.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa khoa này do có giáo viên thuộc khoa này", "", MessageBoxButtons.OK);
+                return;
+            }
+
+
+            if (MessageBox.Show("Bạn có thật sự muốn xóa khoa này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -288,7 +363,7 @@ namespace THI_TN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Loi xoa khoa: " + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi xóa khoa: " + ex.Message, "", MessageBoxButtons.OK);
                     this.KHOATableAdapter.Fill(this.DS.KHOA);
                     bdsKhoa.Position = bdsKhoa.Find("MAKH", maKhoa);
                     return;
@@ -309,10 +384,13 @@ namespace THI_TN
                 this.GIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
                 this.LOPTableAdapter.Fill(this.DS.LOP);
                 this.KHOATableAdapter.Fill(this.DS.KHOA);
+
+                updateStatusOfKhoa(true);
+                updateStatusOfLop(true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Loi reload " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi reload " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -322,11 +400,15 @@ namespace THI_TN
             flagOptionLop = "ADD";
             txtMaLop.Enabled = true;
             bdsLop.AddNew();
-            txtMaKhoaOfLop.Text = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
-            Console.WriteLine(((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString());
-           
-            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = false;
-            btnGhiLop.Enabled = btnPhucHoi.Enabled = true;
+            txtMaKhOfLop.Text = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
+            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = true;
+            panelControl8.Enabled = true;
+            lOPGridControl.Enabled = false;
+
+            Boolean statusKhoa = false;
+            updateStatusOfKhoa(statusKhoa);
+            txtMaLop.Focus();
         }
 
         private void btnSuaLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -336,10 +418,18 @@ namespace THI_TN
             oldMaLop = txtMaLop.Text.Trim();
             oldTenLop = txtTenLop.Text.Trim();
 
-            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = false;
-            btnGhiLop.Enabled = btnPhucHoi.Enabled = true;
+            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = true;
+            panelControl5.Enabled = true;
+            lOPGridControl.Enabled = false;
+
+            Boolean statusKhoa = false;
+            updateStatusOfKhoa(statusKhoa);
+
+
+
             txtMaLop.Enabled = false;
-            txtMaKhoaOfLop.Enabled = false;
+            txtMaKhOfLop.Enabled = false;
         }
 
         private void btnGhiLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -369,17 +459,18 @@ namespace THI_TN
             }
         }
 
+
         private bool ValidateLop()
         {
             if (txtMaLop.Text.Trim() == "")
             {
-                MessageBox.Show("Ma lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Mã lớp không được bỏ trống", "", MessageBoxButtons.OK);
                 txtMaLop.Focus();
                 return false;
             }
             if (txtTenLop.Text.Trim() == "")
             {
-                MessageBox.Show("Ten lop khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Tên lớp không được bỏ trống", "", MessageBoxButtons.OK);
                 txtTenLop.Focus();
                 return false;
             }
@@ -399,35 +490,40 @@ namespace THI_TN
 
                 if (resultMa == -1)
                 {
-                    XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultMa == 1)
                 {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Mã lớp đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultMa == 2)
                 {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Mã lớp đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                     return false;
                 }
 
                 String queryCheckTenLop = "DECLARE @return_value int \n" +
                    "EXEC @return_value = [dbo].[SP_CHECKNAME] \n " +
-                   "@Name = N'" + txtTenKhoa.Text + "',\n " +
+                   "@Name = N'" + txtTenLop.Text.Trim() + "',\n " +
                    "@Type = N'TENLOP' \n " +
                    "SELECT 'Return Value' = @return_value";
                 int resultTen = Program.CheckDataHelper(queryCheckTenLop);
 
                 if (resultTen == -1)
                 {
-                    XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultTen == 1)
                 {
-                    XtraMessageBox.Show("Ten lop da ton tai ", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Tên lớp đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
+                    return false;
+                }
+                else if (resultTen == 2)
+                {
+                    XtraMessageBox.Show("Tên lớp đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                     return false;
                 }
 
@@ -445,17 +541,17 @@ namespace THI_TN
 
                     if (resultMa == -1)
                     {
-                        XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultMa == 1)
                     {
-                        XtraMessageBox.Show("Ma lop da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã lớp đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultMa == 2)
                     {
-                        XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã lớp đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                         return false;
                     }
                 }
@@ -470,12 +566,17 @@ namespace THI_TN
 
                     if (resultTen == -1)
                     {
-                        XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Lỗi kết nối database", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultTen == 1)
                     {
-                        XtraMessageBox.Show("Ten lop da ton tai ", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Tên lớp đã tồn tại ở site hiện tại", "", MessageBoxButtons.OK);
+                        return false;
+                    }
+                    else if (resultTen == 2)
+                    {
+                        XtraMessageBox.Show("Tên lớp đã tồn tại ở site khác", "", MessageBoxButtons.OK);
                         return false;
                     }
                 }
@@ -486,13 +587,18 @@ namespace THI_TN
         private void btnXoaLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string maLop = "";
-            // check data grid have rows > 0 
-            if (bdsSV.Count > 0 || bdsGVDK.Count > 0)
+            if (bdsSV.Count > 0)
             {
-                MessageBox.Show("Khong the xoa lop nay", "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể xóa lớp do có sinh viên thuộc lớp này", "", MessageBoxButtons.OK);
                 return;
             }
-            if (MessageBox.Show("Ban co that su muon xoa lop nay khong?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+
+            if (bdsGVDK.Count > 0)
+            {
+                MessageBox.Show("Không thể xóa lớp do có giáo viên đăng ký thi ", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn có thật sự muốn xóa lớp này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -500,11 +606,14 @@ namespace THI_TN
                     bdsLop.RemoveCurrent();
                     this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.LOPTableAdapter.Update(this.DS.LOP);
+                    btnPhucHoi.Enabled = btnGhiKhoa.Enabled = false;
+                    btnPhucHoiLop2.Enabled = btnGhiLop2.Enabled = false;
+
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Loi xoa lop: " + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi xóa lớp: " + ex.Message, "", MessageBoxButtons.OK);
                     this.LOPTableAdapter.Fill(this.DS.LOP);
                     bdsLop.Position = bdsLop.Find("MALOP", maLop);
                     return;
@@ -537,13 +646,18 @@ namespace THI_TN
                     this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.LOPTableAdapter.Update(this.DS.LOP);
 
-                    btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = false;
-                    btnGhiLop.Enabled = btnPhucHoi.Enabled = true;
+                    btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+                    btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = false;
+                    panelControl5.Enabled = false;
+                    lOPGridControl.Enabled = true;
+
+                    Boolean statusKhoa = true;
+                    updateStatusOfKhoa(statusKhoa);
                 }
                 catch (Exception ex)
                 {
                     Console.Write(ex.ToString());
-                    MessageBox.Show("Loi ghi LOP", ex.Message, MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi ghi lớp", ex.Message, MessageBoxButtons.OK);
                     return;
                 }
             }
@@ -561,14 +675,28 @@ namespace THI_TN
             bdsLop.CancelEdit();
             if (btnThemLop.Enabled == false) bdsLop.Position = vitriLop;
             lOPGridControl.Enabled = true;
-            /*panelControl2.Enabled = true;*/
+            panelControl8.Enabled = true;
             btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = true;
             btnGhiLop2.Enabled = btnPhucHoiLop.Enabled = false;
-            frmKhoaLop_Load(sender, e);
+
+            btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+            btnGhiKhoa.Enabled = btnPhucHoi.Enabled = false;
+            panelControl5.Enabled = false;
+            kHOAGridControl.Enabled = true;
             if (vitriLop > 0)
             {
                 bdsLop.Position = vitriLop;
             }
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+           this.Close();
+        }
+
+        private void panelControl4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -576,10 +704,18 @@ namespace THI_TN
             bdsKhoa.CancelEdit();
             if (btnAddKhoa.Enabled == false) bdsKhoa.Position = vitriKhoa;
             kHOAGridControl.Enabled = true;
-            /*panelControl2.Enabled = true;*/
+            panelControl2.Enabled = false;
+            kHOAGridControl.Enabled = true;
             btnAddKhoa.Enabled = btnSuaKhoa.Enabled = btnXoaKhoa.Enabled = true;
             btnGhiKhoa.Enabled = btnPhucHoi.Enabled = false;
-            frmKhoaLop_Load(sender, e);
+
+
+
+            btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+            btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = false;
+            panelControl8.Enabled = false;
+            lOPGridControl.Enabled = true;
+
             if (vitriKhoa > 0)
             {
                 bdsKhoa.Position = vitriKhoa;

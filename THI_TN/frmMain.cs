@@ -25,20 +25,67 @@ namespace THI_TN
 
             if (Program.mGroup == "Sinhvien")
             {
-                barButtonItem1.Enabled = false;
+                btnMH.Enabled = false;
                 btnKhoaLop.Enabled = false;
                 btnSinhVien.Enabled = false;
                 btnGiaoVien.Enabled = false;
                 btnDeThi.Enabled = false;
                 btnThi.Enabled = true;
+                btnThiThu.Enabled = false;
                 btnDkiThi.Enabled = false;
+                btnXemKQ.Enabled = true;
+                btnBangDiem.Enabled = false;
+                btnDanhSachDK.Enabled = false;
+                btnTaoTk.Enabled = false;
+                btnXoaTaiKhoan.Enabled = false;
             }else if (Program.mGroup == "GV")
             {
-
-            }else if (Program.mGroup == "Truong")
+                btnMH.Enabled = false;
+                btnKhoaLop.Enabled = false;
+                btnSinhVien.Enabled = false;
+                btnGiaoVien.Enabled = false;
+                btnDeThi.Enabled = true;
+                btnThi.Enabled = false;
+                btnThiThu.Enabled = true;
+                btnDkiThi.Enabled = false;
+                btnXemKQ.Enabled = false;
+                btnBangDiem.Enabled = false;
+                btnDanhSachDK.Enabled = false;
+                btnTaoTk.Enabled = false;
+                btnXoaTaiKhoan.Enabled = false;
+            }
+            else if (Program.mGroup == "Truong")
             {
-
-            } 
+                btnMH.Enabled = true;
+                btnKhoaLop.Enabled = true;
+                btnSinhVien.Enabled = true;
+                btnGiaoVien.Enabled = true;
+                btnDeThi.Enabled = true;
+                btnThi.Enabled = false;
+                btnThiThu.Enabled = false;
+                btnDkiThi.Enabled = true;
+                btnXemKQ.Enabled = true;
+                btnBangDiem.Enabled = true;
+                btnDanhSachDK.Enabled = true;
+                btnTaoTk.Enabled = true;
+                btnXoaTaiKhoan.Enabled = false;
+            }
+            else if (Program.mGroup == "CoSo")
+            {
+                btnMH.Enabled = true;
+                btnKhoaLop.Enabled = true;
+                btnSinhVien.Enabled = true;
+                btnGiaoVien.Enabled = true;
+                btnDeThi.Enabled = true;
+                btnThi.Enabled = true;
+                btnThiThu.Enabled = true;
+                btnDkiThi.Enabled = true;
+                btnXemKQ.Enabled = true;
+                btnBangDiem.Enabled = true;
+                btnDanhSachDK.Enabled = true;
+                btnTaoTk.Enabled = true;
+                btnXoaTaiKhoan.Enabled = true;
+            }
         }
         private Form CheckExistForm(Type ftype)
         {

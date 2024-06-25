@@ -64,7 +64,7 @@ namespace THI_TN
             this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
 
             panelControl2.Enabled = false;
-
+            btnPhucHoi.Enabled = btnGhi.Enabled = false;
         }
 
         private void panelControl1_Paint(object sender, PaintEventArgs e)
@@ -81,24 +81,30 @@ namespace THI_TN
         {
             if (ValidateMonHoc() == true)
             {
-                try
+
+                if (MessageBox.Show("Bạn có thật sự muốn thêm môn học này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    bdsMonHoc.EndEdit();
-                    bdsMonHoc.ResetCurrentItem();
-                    this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.MONHOCTableAdapter.Update(this.DS.MONHOC);
+                    try
+                    {
+                        bdsMonHoc.EndEdit();
+                        bdsMonHoc.ResetCurrentItem();
+                        this.MONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.MONHOCTableAdapter.Update(this.DS.MONHOC);
 
 
-                    btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                    btnGhi.Enabled = btnPhucHoi.Enabled = false;
-                    txtMAMH.Enabled = true;
-                    /*panelControl1.Enabled = false;*/
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    MessageBox.Show("Loi ghi lop hoc", ex.Message, MessageBoxButtons.OK);
-                    return;
+                        btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnLamMơi.Enabled = true;
+                        btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                        txtMAMH.Enabled = true;
+
+                        panelControl2.Enabled = false;
+                        mONHOCGridControl.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        MessageBox.Show("Loi ghi lop hoc", ex.Message, MessageBoxButtons.OK);
+                        return;
+                    }
                 }
             }
             else
@@ -128,8 +134,7 @@ namespace THI_TN
                 txtMAMH.Focus();
                 return false;
             }
-            if (MessageBox.Show("Bạn có thật sự muốn xóa môn học này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
+          
                 if (flagOptionMonHoc == "ADD")
                 {
 
@@ -217,10 +222,6 @@ namespace THI_TN
                         }
                     }
                 }
-            }
-
-
-
          
             return true;
         }
@@ -276,7 +277,7 @@ namespace THI_TN
             bdsMonHoc.CancelEdit();
             if (btnAdd.Enabled == false) bdsMonHoc.Position = vitri;
             mONHOCGridControl.Enabled = true;
-            panelControl2.Enabled = fa;
+            panelControl2.Enabled = false;
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMơi.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
             frmMonHoc_Load(sender, e);
@@ -298,13 +299,15 @@ namespace THI_TN
             try
             {
                 this.MONHOCTableAdapter.Fill(this.DS.MONHOC);
-                btnGhi.Enabled = btnPhucHoi.Enabled = btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+
+                btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnThoat.Enabled = btnLamMơi.Enabled = true;
+                btnGhi.Enabled = btnPhucHoi.Enabled = false;
                 txtMAMH.Enabled = true;
                 panelControl2.Enabled = false;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Loi reload " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi reload" + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
         }

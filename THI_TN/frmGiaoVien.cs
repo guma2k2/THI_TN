@@ -22,7 +22,7 @@ namespace THI_TN
         private string flagOptionGV;
         private string oldMaGV;
         private int vitri = 0;
-        private string pattern = @"^\w+\s+and\s+blank$";
+        string pattern = @"^[A-Za-z ]+$";
         private void frmGiaoVien_Load(object sender, EventArgs e)
         {
             DS.EnforceConstraints = false;
@@ -41,10 +41,29 @@ namespace THI_TN
             cbxCoSo.ValueMember = "TENSERVER";
             cbxCoSo.SelectedIndex = Program.mChiNhanh;
 
-            if (Program.mGroup != "CoSo")
+            cbxKhoa.DataSource = bdsKhoa;
+            cbxKhoa.DisplayMember = "TENKH";
+            cbxKhoa.ValueMember = "MAKH";
+
+
+            if (Program.mGroup == "CoSo")
             {
                 cbxCoSo.Enabled = false;
+            } else if (Program.mGroup == "Truong")
+            {
+                disableEditGiaoVien();
             }
+
+            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+        }
+
+        private void disableEditGiaoVien()
+        {
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            panelControl4.Enabled = false;
+            gIAOVIENGridControl.Enabled = true;
+            kHOAGridControl.Enabled = true;
         }
 
         private void cbxCoSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,8 +113,11 @@ namespace THI_TN
             bdsGV.AddNew();
             txtMAGV.Focus();
             txtMAKH.Text = ((DataRowView)bdsKhoa[vitri])["MAKH"].ToString();
-            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            panelControl4.Enabled = true;
+            gIAOVIENGridControl.Enabled = false;
+            kHOAGridControl.Enabled = false;
         }
 
 
@@ -108,36 +130,42 @@ namespace THI_TN
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            vitri = bdsGV.Position;
+            vitri = bdsKhoa.Position;
             flagOptionGV = "UPDATE";
             oldMaGV = txtMAGV.Text.Trim();
-
-
-            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnPhucHoi.Enabled = false;
-            btnGhi.Enabled = true;
-            txtMAGV.Enabled = false;
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            panelControl4.Enabled = true;
+            gIAOVIENGridControl.Enabled = false;
+            kHOAGridControl.Enabled = false;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (ValidateGiaoVien() == true)
             {
-                try
+                if (MessageBox.Show("Bạn có thật sự muốn ghi thông tin giáo viên không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    bdsGV.EndEdit();
-                    bdsGV.ResetCurrentItem();
-                    this.GIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.GIAOVIENTableAdapter.Update(this.DS.GIAOVIEN);
+                    try
+                    {
+                        bdsGV.EndEdit();
+                        bdsGV.ResetCurrentItem();
+                        this.GIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.GIAOVIENTableAdapter.Update(this.DS.GIAOVIEN);
 
 
-                    btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                    btnGhi.Enabled = btnPhucHoi.Enabled = false;
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.ToString());
-                    MessageBox.Show("Loi ghi giao vien", ex.Message, MessageBoxButtons.OK);
-                    return;
+                        btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+                        btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                        panelControl4.Enabled = false;
+                        gIAOVIENGridControl.Enabled = true;
+                        kHOAGridControl.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write(ex.ToString());
+                        MessageBox.Show("Loi ghi giao vien", ex.Message, MessageBoxButtons.OK);
+                        return;
+                    }
                 }
             }
             else
@@ -151,43 +179,51 @@ namespace THI_TN
 
             string ho = txtHO.Text.Trim(); 
             string ten = txtTen.Text.Trim();
-
-            if (!Regex.IsMatch(ho, pattern) )
+            string magv = txtMAGV.Text.Trim();  
+            if (magv == "")
             {
-                MessageBox.Show("Ho  chi nhan chu va khoang trang", "", MessageBoxButtons.OK);
-                txtHO.Focus();
+                MessageBox.Show("Mã giáo viên không được bỏ trống", "", MessageBoxButtons.OK);
+                txtMAGV.Focus();
                 return false;
             }
 
-            if (!Regex.IsMatch(ten, pattern))
-            {
-                MessageBox.Show(" ten chi nhan chu va khoang trang", "", MessageBoxButtons.OK);
-                txtTen.Focus();
-                return false;
-            }
-
-            if (txtMAGV.Text.Trim() == "")
-            {
-                MessageBox.Show("Ma giao vien khong dc bo trong", "", MessageBoxButtons.OK);
+            if (magv.Length > 8) {
+                MessageBox.Show("Mã giảng viên không được vượt quá 8 ký tự", "", MessageBoxButtons.OK);
                 txtMAGV.Focus();
                 return false;
             }
 
 
-            if (txtHO.Text.Trim() == "")
+            if (ho == "")
             {
-                MessageBox.Show("Ho khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Họ không được bỏ trống", "", MessageBoxButtons.OK);
                 txtHO.Focus();
                 return false;
             }
 
-            if (txtTen.Text.Trim() == "")
+            if (!Regex.IsMatch(ho, pattern))
             {
-                MessageBox.Show("Ten khong dc bo trong", "", MessageBoxButtons.OK);
+                MessageBox.Show("Họ chỉ nhận chữ hoặc khoảng trắng", "", MessageBoxButtons.OK);
+                txtHO.Focus();
+                return false;
+            }
+
+            if (ten == "")
+            {
+                MessageBox.Show("Tên không được bỏ trống", "", MessageBoxButtons.OK);
                 txtTen.Focus();
                 return false;
             }
 
+
+            if (!Regex.IsMatch(ten, pattern))
+            {
+                MessageBox.Show("Tên chỉ nhận chữ hoặc khoảng trắng", "", MessageBoxButtons.OK);
+                txtTen.Focus();
+                return false;
+            }
+
+        
 
             if (flagOptionGV == "ADD")
             {
@@ -205,17 +241,12 @@ namespace THI_TN
 
                 if (resultMa == -1)
                 {
-                    XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Lỗi kết nối cơ sở dữ liệu", "", MessageBoxButtons.OK);
                     return false;
                 }
                 else if (resultMa == 1)
                 {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
-                    return false;
-                }
-                else if (resultMa == 2)
-                {
-                    XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
+                    XtraMessageBox.Show("Mã giảng viên đã tồn tại", "", MessageBoxButtons.OK);
                     return false;
                 }
 
@@ -233,19 +264,15 @@ namespace THI_TN
 
                     if (resultMa == -1)
                     {
-                        XtraMessageBox.Show("Loi ket noi database", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Lỗi kết nối cơ sở dữ liệu", "", MessageBoxButtons.OK);
                         return false;
                     }
                     else if (resultMa == 1)
                     {
-                        XtraMessageBox.Show("Ma sinh vien da ton tai o khoa hien tai", "", MessageBoxButtons.OK);
+                        XtraMessageBox.Show("Mã giảng viên đã tồn tại", "", MessageBoxButtons.OK);
                         return false;
                     }
-                    else if (resultMa == 2)
-                    {
-                        XtraMessageBox.Show("Ma lop da ton tai o khoa khac", "", MessageBoxButtons.OK);
-                        return false;
-                    }
+                  
                 }
             }
             return true;
@@ -254,13 +281,18 @@ namespace THI_TN
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             string maGV = "";
-            // check data grid have rows > 0 
-            if (bdsBoDe.Count > 0 || bdsGVDK.Count > 0)
+            if (bdsBoDe.Count > 0)
             {
-                MessageBox.Show("Khong the xoa giao vien nay ", "", MessageBoxButtons.OK);
+                MessageBox.Show("Giáo viên này đã tạo ra bộ đề ", "", MessageBoxButtons.OK);
                 return;
             }
-            if (MessageBox.Show("Ban co that su muon xoa giao vien nay khong?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+
+            if (bdsGVDK.Count > 0)
+            {
+                MessageBox.Show("Giáo viên đã đăng kí cho một lớp thi", "", MessageBoxButtons.OK);
+                return;
+            }
+            if (MessageBox.Show("Bạn có thật sử muốn xóa giáo viên này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
@@ -271,7 +303,7 @@ namespace THI_TN
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Loi xoa giao vien: " + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Lỗi xóa giáo viên: " + ex.Message, "", MessageBoxButtons.OK);
                     this.GIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
                     bdsGV.Position = bdsGV.Find("MAGV", maGV);
                     return;
@@ -286,12 +318,16 @@ namespace THI_TN
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsGV.CancelEdit();
-            if (btnAdd.Enabled == false) bdsGV.Position = vitri;
+            Console.WriteLine(bdsKhoa.Position);
+            if (btnAdd.Enabled == false)
+            {
+                bdsKhoa.Position = vitri;
+            }
             gIAOVIENGridControl.Enabled = true;
-            panelControl2.Enabled = true;
-            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+            panelControl4.Enabled = false;
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
-            frmGiaoVien_Load(sender, e);
+            kHOAGridControl.Enabled = true;
             if (vitri > 0)
             {
                 bdsGV.Position = vitri;
@@ -311,10 +347,16 @@ namespace THI_TN
                 this.GIAOVIEN_DANGKYTableAdapter.Fill(this.DS.GIAOVIEN_DANGKY);
                 this.GIAOVIENTableAdapter.Fill(this.DS.GIAOVIEN);
                 this.KHOATableAdapter.Fill(this.DS.KHOA);
+
+                gIAOVIENGridControl.Enabled = true;
+                panelControl4.Enabled = false;
+                btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled= true;
+                btnGhi.Enabled = btnPhucHoi.Enabled = false;
+                kHOAGridControl.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Loi reload " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi reload " + ex.Message, "", MessageBoxButtons.OK);
                 return;
             }
         }
@@ -322,6 +364,23 @@ namespace THI_TN
         private void txtMAKH_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            btnGhi.Enabled = btnPhucHoi.Enabled = true;
+            panelControl4.Enabled = true;
+            gIAOVIENGridControl.Enabled = false;
+            kHOAGridControl.Enabled = false;
+        }
+
+        private void cbxKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxKhoa.SelectedValue != null)
+            {
+                txtMAKH.Text = cbxKhoa.SelectedValue.ToString();
+            }
         }
     }
 }
