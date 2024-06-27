@@ -25,7 +25,7 @@ namespace THI_TN
             txtHoten.Text = Program.mHoten;
             txtLan.Text = result.lan + "";
             txtNgayThi.Text = result.ngayThi.ToString();
-            lb_monhoc.Text = result.tenMh;
+            txtMonHoc.Text = result.tenMh;
             lb_diemthi.Text = result.diem.ToString();
         }
 

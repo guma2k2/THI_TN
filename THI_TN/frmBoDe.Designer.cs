@@ -74,6 +74,7 @@
             this.MONHOCTableAdapter = new THI_TN.DSTableAdapters.MONHOCTableAdapter();
             this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.cbxDapAn = new System.Windows.Forms.ComboBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.cbxTrinhDo = new System.Windows.Forms.ComboBox();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -90,7 +91,6 @@
             this.txtMAMH = new DevExpress.XtraEditors.TextEdit();
             this.bdsCTBAITHI = new System.Windows.Forms.BindingSource(this.components);
             this.CT_BAITHITableAdapter = new THI_TN.DSTableAdapters.CT_BAITHITableAdapter();
-            this.cbxDapAn = new System.Windows.Forms.ComboBox();
             mAGVLabel = new System.Windows.Forms.Label();
             dAP_ANLabel = new System.Windows.Forms.Label();
             dLabel = new System.Windows.Forms.Label();
@@ -558,6 +558,22 @@
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1099, 311);
             this.panelControl2.TabIndex = 40;
+            this.panelControl2.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl2_Paint);
+            // 
+            // cbxDapAn
+            // 
+            this.cbxDapAn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDapAn.FormattingEnabled = true;
+            this.cbxDapAn.Items.AddRange(new object[] {
+            "Câu A",
+            "Câu B",
+            "Câu C",
+            "Câu D"});
+            this.cbxDapAn.Location = new System.Drawing.Point(725, 73);
+            this.cbxDapAn.Name = "cbxDapAn";
+            this.cbxDapAn.Size = new System.Drawing.Size(239, 24);
+            this.cbxDapAn.TabIndex = 64;
+            this.cbxDapAn.SelectedIndexChanged += new System.EventHandler(this.cbxDapAn_SelectedIndexChanged);
             // 
             // labelControl2
             // 
@@ -708,21 +724,6 @@
             // CT_BAITHITableAdapter
             // 
             this.CT_BAITHITableAdapter.ClearBeforeFill = true;
-            // 
-            // cbxDapAn
-            // 
-            this.cbxDapAn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxDapAn.FormattingEnabled = true;
-            this.cbxDapAn.Items.AddRange(new object[] {
-            "Câu A",
-            "Câu B",
-            "Câu C",
-            "Câu D"});
-            this.cbxDapAn.Location = new System.Drawing.Point(725, 73);
-            this.cbxDapAn.Name = "cbxDapAn";
-            this.cbxDapAn.Size = new System.Drawing.Size(239, 24);
-            this.cbxDapAn.TabIndex = 64;
-            this.cbxDapAn.SelectedIndexChanged += new System.EventHandler(this.cbxDapAn_SelectedIndexChanged);
             // 
             // frmBoDe
             // 

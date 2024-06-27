@@ -196,6 +196,8 @@ namespace THI_TN
                     kHOAGridControl.Enabled = true;
                     Boolean statusLop = true;
                     updateStatusOfLop(statusLop);
+                    btnGhiLop2.Enabled = btnPhucHoiLop2.Enabled = false;
+                    panelControl8.Enabled = false;
 
                 }
                 catch (Exception ex)
@@ -398,7 +400,6 @@ namespace THI_TN
         private void btnThemLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             flagOptionLop = "ADD";
-            txtMaLop.Enabled = true;
             bdsLop.AddNew();
             txtMaKhOfLop.Text = ((DataRowView)bdsKhoa[bdsKhoa.Position])["MAKH"].ToString();
             btnThemLop.Enabled = btnSuaLop.Enabled = btnXoaLop.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
@@ -653,6 +654,9 @@ namespace THI_TN
 
                     Boolean statusKhoa = true;
                     updateStatusOfKhoa(statusKhoa);
+
+                    btnGhiKhoa.Enabled = btnPhucHoi.Enabled = false;
+                    panelControl5.Enabled = false;
                 }
                 catch (Exception ex)
                 {

@@ -84,11 +84,15 @@ namespace THI_TN
             cbxHoTen.DataSource = bdsGv;
             cbxHoTen.DisplayMember = "HOTEN";
             cbxHoTen.ValueMember = "MAGV";
-            txtMANV.Text = cbxHoTen.SelectedValue.ToString();
-            txtMatKhau.Text = "123456";
-            txtXacNhanMK.Text = "123456";
-            txtTaiKhoan.Text = getTaiKhoanByUsername();
-            loadRoleByUsername();
+            rgVaiTro.Enabled = txtTaiKhoan.Enabled = txtMANV.Enabled = txtMatKhau.Enabled = txtXacNhanMK.Enabled= false;
+            if (cbxHoTen.SelectedValue != null)
+            {
+                txtMANV.Text = cbxHoTen.SelectedValue.ToString();
+                txtMatKhau.Text = "123456";
+                txtXacNhanMK.Text = "123456";
+                txtTaiKhoan.Text = getTaiKhoanByUsername();
+                loadRoleByUsername();
+            }
         }
 
         private void btnXoaTK_Click_1(object sender, EventArgs e)
@@ -99,20 +103,27 @@ namespace THI_TN
                 "@username = N'" + txtMANV.Text.Trim() + "'\n " +
                 "SELECT 'Return Value' = @return_value";
             Console.WriteLine(queryXoaTaiKhoan);
-
-            try
+            if (MessageBox.Show("Bạn có thật sự muốn xóa tài khoản này không?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                int resultMa = Program.CheckDataHelper(queryXoaTaiKhoan);
-                if (resultMa == 0)
+                try
                 {
-                    XtraMessageBox.Show("Tạo tài khoản thành công", "", MessageBoxButtons.OK);
-                    frmTaiKhoanXoa2_Load(sender, e);
+                    int resultMa = Program.CheckDataHelper(queryXoaTaiKhoan);
+                    if (resultMa == 0)
+                    {
+                        XtraMessageBox.Show("Xóa tài khoản thành công", "", MessageBoxButtons.OK);
+                        frmTaiKhoanXoa2_Load(sender, e);
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    XtraMessageBox.Show(ex.Message, "", MessageBoxButtons.OK);
                 }
             }
-            catch (SqlException ex)
-            {
-                XtraMessageBox.Show(ex.Message, "", MessageBoxButtons.OK);
-            }
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();   
         }
     }
 }

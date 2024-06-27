@@ -24,9 +24,8 @@ namespace THI_TN
         private string trinhDo;
         private List<Question> questions = new List<Question>();
 
-        private string maLop;
 
-        private String maMH;
+        private int lanthi = 0;
 
         private void btnThi_Click(object sender, EventArgs e)
         {
@@ -35,7 +34,7 @@ namespace THI_TN
             string tenmh = cbxMonHoc.Text.ToString();
             Console.WriteLine(mamh);
             Console.WriteLine(tenmh);
-            string lanthi = cbxLan.SelectedValue.ToString();
+            string lanthi = txtLan.Text.ToString();
 
             string sql = "EXEC dbo.SP_THI_GET_GVDK '" + malop + "', '" + mamh + "', '" + lanthi + "' ";
             Program.myReader = Program.ExecSqlDataReader(sql);
@@ -52,14 +51,13 @@ namespace THI_TN
             }
             else
             {
-                MessageBox.Show("Lop chua duoc dang ky thi");
+                MessageBox.Show("Lớp chưa được đăng kí thi");
                 return;
             }
             Program.myReader.Close();
             Console.WriteLine(soCauThi);
             Console.WriteLine(thoiGian);
             Console.WriteLine(trinhDo);
-            // lay de thi 
 
             string sqlGetDethi = "EXEC dbo.SP_THI_GET_QUESTION '" + mamh + "', '" + trinhDo + "', '" + soCauThi + "' ";
 
@@ -94,7 +92,6 @@ namespace THI_TN
             bangDiem.lan = int.Parse(lanthi);
             bangDiem.ngayThi = txtNgaythi.DateTime;
             bangDiem.diem = 0;
-            // go to next page
 
             frmThiDoing f = new frmThiDoing(questions, soCauThi, thoiGian, tenmh, bangDiem);
             f.Show();
@@ -115,72 +112,67 @@ namespace THI_TN
             this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
 
 
+            cbxCoSo.DataSource = Program.bds_dspm;
+            cbxCoSo.DisplayMember = "TENCOSO";
+            cbxCoSo.ValueMember = "TENSERVER";
+            cbxCoSo.SelectedIndex = Program.mChiNhanh;
 
-            string malop = cbxLop.SelectedValue.ToString();
-            loadInfoMonHocByLop(malop);
+            cbxLop.DataSource = bdsLop;
+            cbxLop.DisplayMember = "TENLOP";
+            cbxLop.ValueMember = "MALOP";
 
-            string mamh = cbxMonHoc.SelectedValue.ToString();
-
-            loadLanThiByLopAndMonHoc(malop, mamh);
-
-            int lan = int.Parse(cbxMonHoc.SelectedValue.ToString());
-            loadNgayThiByLopAndMonHocAndLan(malop, mamh, lan);
-
-            cbxMonHoc.DataSource = Program.bds_dspm;
-            cbxMonHoc.DisplayMember = "TENCOSO";
-            cbxMonHoc.ValueMember = "TENSERVER";
-            Console.WriteLine(Program.mChiNhanh);
-            cbxMonHoc.SelectedIndex = Program.mChiNhanh;
-
-
-
-            if (Program.mGroup != "CoSo")
+            if (cbxLop.SelectedValue != null)
             {
-                cbxMonHoc.Enabled = false;
+                string malop = cbxLop.SelectedValue.ToString();
+                txtMalop.Text = malop;
+                loadInfoMonHocByLop(malop);
+            }
+
+            if (Program.mGroup == "CoSo")
+            {
+                cbxCoSo.Enabled = false;
+            }else if (Program.mGroup == "GV")
+            {
+                cbxCoSo.Enabled = true;
             }
 
         }
 
-        private void loadNgayThiByLopAndMonHocAndLan(string malop, string mamh, int lan)
+        private void loadLanThiAndNgayThi(string malop, string mamh)
         {
-            if (KetNoi_CSDLGOC() == 0) return;
-            String dateNow = DateTime.Now.ToString();
-            string sql = "EXEC dbo.SP_THI_GET_ALL_LAN '" + malop + "', '" + mamh + "', '" + lan; 
-            if (conn_publisher.State == ConnectionState.Closed)
-            {
-                conn_publisher.Open();
-            }
+            if (Program.KetNoi() == 0) return;
+            string sql = "EXEC dbo.[SP_THI_GET_LAN_NGAYTHI] '" + malop + "', '" + mamh + "'";
             Program.myReader = Program.ExecSqlDataReader(sql);
 
             if (Program.myReader.Read())
             {
-                txtNgaythi.DateTime = Program.myReader.GetDateTime(0);
+                string socauthiFormat = "Số câu thi: ";
+                string thoigianFormat = "Thời gian thi: ";
+                string trinhDoFormat = "Trình độ: ";
+                Console.WriteLine(Program.myReader.GetInt16(0).ToString());
+                txtLan.Text = Program.myReader.GetInt16(0).ToString();
+                txtNgaythi.DateTime = Program.myReader.GetDateTime(1);
+                socauthiFormat = socauthiFormat + Program.myReader.GetInt16(2).ToString();
+                thoigianFormat = thoigianFormat + Program.myReader.GetInt16(3).ToString();
+                trinhDoFormat = trinhDoFormat + Program.myReader.GetString(4);
+
+                lbSoCauThi.Text = socauthiFormat;
+                lbThoiGian.Text = thoigianFormat;
+                lbTrinhDo.Text = trinhDoFormat;
+
+                soCauThi = Program.myReader.GetInt16(2);
+                trinhDo = Program.myReader.GetString(4);
+                thoiGian = Program.myReader.GetInt16(3);
+                lanthi = Program.myReader.GetInt16(0);
             }
         }
 
-        private void loadLanThiByLopAndMonHoc(string malop, string mamh)
-        {
-            if (KetNoi_CSDLGOC() == 0) return;
-            String dateNow = DateTime.Now.ToString();
-            string sql = "EXEC dbo.SP_THI_GET_ALL_LAN '" + malop + "', '" + mamh + "'";
-            DataTable dt = new DataTable();
-            if (conn_publisher.State == ConnectionState.Closed)
-            {
-                conn_publisher.Open();
-            }
-            SqlDataAdapter da = new SqlDataAdapter(sql, conn_publisher);
-            da.Fill(dt);
-            conn_publisher.Close();
-            cbxMonHoc.DataSource = dt;
-            cbxMonHoc.DisplayMember = "LAN";
-            cbxMonHoc.ValueMember = "LAN";
-        }
         private void loadInfoMonHocByLop(string malop)
         {
-
             if (KetNoi_CSDLGOC() == 0) return;
             String dateNow = DateTime.Now.ToString();
-            string sql = "EXEC dbo.SP_THI_GET_MONHOC_BY_LOP '" + malop + "', '" + dateNow + "'";
+            Console.WriteLine(dateNow);
+            string sql = "EXEC dbo.SP_THI_GET_MONHOC '" + Program.username + "', '" + malop + "'";
             DataTable dt = new DataTable();
             if (conn_publisher.State == ConnectionState.Closed)
             {
@@ -190,8 +182,19 @@ namespace THI_TN
             da.Fill(dt);
             conn_publisher.Close();
             cbxMonHoc.DataSource = dt;
-            cbxMonHoc.DisplayMember = "TENMONHOC";
+            cbxMonHoc.DisplayMember = "TENMH";
             cbxMonHoc.ValueMember = "MAMH";
+
+            if (cbxMonHoc.SelectedValue != null)
+            {
+                string mamh = cbxMonHoc.SelectedValue.ToString();
+                loadLanThiAndNgayThi(malop, mamh);
+                btnThi.Enabled = true;
+            }
+            else
+            {
+                btnThi.Enabled = false;
+            }
         }
 
         private int KetNoi_CSDLGOC()
@@ -214,17 +217,26 @@ namespace THI_TN
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void cbxLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
-            if (cbxMonHoc.SelectedValue.ToString() == "System.Data.DataRowView")
+            if (cbxLop.SelectedValue != null)
+            {
+                string malop = cbxLop.SelectedValue.ToString();
+                txtMalop.Text = malop;
+                loadInfoMonHocByLop(malop);
+            }
+        }
+
+        private void cbxCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbxCoSo.SelectedValue.ToString() == "System.Data.DataRowView")
             {
                 return;
             }
 
-            Program.servername = cbxMonHoc.SelectedValue.ToString();
-            Console.WriteLine(cbxMonHoc.SelectedValue.ToString());
-            if (cbxMonHoc.SelectedIndex != Program.mChiNhanh)
+            Program.servername = cbxCoSo.SelectedValue.ToString();
+            if (cbxCoSo.SelectedIndex != Program.mChiNhanh)
             {
                 Program.mlogin = Program.remoteLogin;
                 Program.password = Program.remotePassowrd;
@@ -238,19 +250,29 @@ namespace THI_TN
 
             if (Program.KetNoi() == 0)
             {
-                MessageBox.Show("Loi ket noi ve co so moi", "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi kết nối cơ sở mới", "", MessageBoxButtons.OK);
             }
             else
             {
                 this.LOPTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.LOPTableAdapter.Fill(this.DS.LOP);
-
             }
         }
 
-        private void cbxLop_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxMonHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (cbxMonHoc.SelectedValue != null)
+            {
+                string mamh = cbxMonHoc.SelectedValue.ToString();
+                groupThi.Visible = true;
+                loadLanThiAndNgayThi(txtMalop.Text.ToString(), mamh);
+                btnThi.Enabled = true;
+            }
+            else
+            {
+                groupThi.Visible = false;
+                btnThi.Enabled = false;
+            }
         }
     }
 }

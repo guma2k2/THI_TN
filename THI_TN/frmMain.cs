@@ -77,7 +77,7 @@ namespace THI_TN
                 btnSinhVien.Enabled = true;
                 btnGiaoVien.Enabled = true;
                 btnDeThi.Enabled = true;
-                btnThi.Enabled = true;
+                btnThi.Enabled = false;
                 btnThiThu.Enabled = true;
                 btnDkiThi.Enabled = true;
                 btnXemKQ.Enabled = true;
@@ -276,6 +276,21 @@ namespace THI_TN
             else
             {
                 frmBeginThiThu f = new frmBeginThiThu();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDanhSachDK_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Form frm = this.CheckExistForm(typeof(frmReportXemDSKDK));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                frmReportXemDSKDK f = new frmReportXemDSKDK();
                 f.MdiParent = this;
                 f.Show();
             }

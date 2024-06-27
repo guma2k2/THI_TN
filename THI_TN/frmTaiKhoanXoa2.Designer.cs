@@ -32,7 +32,7 @@
             this.rbGiaoVien = new System.Windows.Forms.RadioButton();
             this.rbCoSo = new System.Windows.Forms.RadioButton();
             this.rbTruong = new System.Windows.Forms.RadioButton();
-            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
+            this.rgVaiTro = new DevExpress.XtraEditors.RadioGroup();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnXoaTK = new System.Windows.Forms.Button();
             this.cbxHoTen = new System.Windows.Forms.ComboBox();
@@ -50,7 +50,7 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgVaiTro.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtXacNhanMK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).BeginInit();
@@ -64,7 +64,7 @@
             this.panelControl2.Controls.Add(this.rbGiaoVien);
             this.panelControl2.Controls.Add(this.rbCoSo);
             this.panelControl2.Controls.Add(this.rbTruong);
-            this.panelControl2.Controls.Add(this.radioGroup1);
+            this.panelControl2.Controls.Add(this.rgVaiTro);
             this.panelControl2.Controls.Add(this.btnThoat);
             this.panelControl2.Controls.Add(this.btnXoaTK);
             this.panelControl2.Controls.Add(this.cbxHoTen);
@@ -89,10 +89,10 @@
             this.rbGiaoVien.AutoSize = true;
             this.rbGiaoVien.Location = new System.Drawing.Point(340, 379);
             this.rbGiaoVien.Name = "rbGiaoVien";
-            this.rbGiaoVien.Size = new System.Drawing.Size(80, 20);
+            this.rbGiaoVien.Size = new System.Drawing.Size(87, 20);
             this.rbGiaoVien.TabIndex = 24;
             this.rbGiaoVien.TabStop = true;
-            this.rbGiaoVien.Text = "Giao vien";
+            this.rbGiaoVien.Text = "Giảng viên";
             this.rbGiaoVien.UseVisualStyleBackColor = true;
             // 
             // rbCoSo
@@ -100,10 +100,10 @@
             this.rbCoSo.AutoSize = true;
             this.rbCoSo.Location = new System.Drawing.Point(340, 333);
             this.rbCoSo.Name = "rbCoSo";
-            this.rbCoSo.Size = new System.Drawing.Size(56, 20);
+            this.rbCoSo.Size = new System.Drawing.Size(60, 20);
             this.rbCoSo.TabIndex = 23;
             this.rbCoSo.TabStop = true;
-            this.rbCoSo.Text = "Coso";
+            this.rbCoSo.Text = "Cơ sở";
             this.rbCoSo.UseVisualStyleBackColor = true;
             // 
             // rbTruong
@@ -111,40 +111,42 @@
             this.rbTruong.AutoSize = true;
             this.rbTruong.Location = new System.Drawing.Point(340, 285);
             this.rbTruong.Name = "rbTruong";
-            this.rbTruong.Size = new System.Drawing.Size(69, 20);
+            this.rbTruong.Size = new System.Drawing.Size(70, 20);
             this.rbTruong.TabIndex = 22;
             this.rbTruong.TabStop = true;
-            this.rbTruong.Text = "Truong";
+            this.rbTruong.Text = "Trường";
             this.rbTruong.UseVisualStyleBackColor = true;
             // 
-            // radioGroup1
+            // rgVaiTro
             // 
-            this.radioGroup1.Location = new System.Drawing.Point(327, 272);
-            this.radioGroup1.Name = "radioGroup1";
-            this.radioGroup1.Size = new System.Drawing.Size(302, 128);
-            this.radioGroup1.TabIndex = 21;
+            this.rgVaiTro.Location = new System.Drawing.Point(327, 272);
+            this.rgVaiTro.Name = "rgVaiTro";
+            this.rgVaiTro.Size = new System.Drawing.Size(302, 146);
+            this.rgVaiTro.TabIndex = 21;
             // 
             // btnThoat
             // 
             this.btnThoat.Location = new System.Drawing.Point(676, 458);
             this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(177, 23);
+            this.btnThoat.Size = new System.Drawing.Size(185, 47);
             this.btnThoat.TabIndex = 16;
-            this.btnThoat.Text = "Thoat";
+            this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnXoaTK
             // 
             this.btnXoaTK.Location = new System.Drawing.Point(275, 458);
             this.btnXoaTK.Name = "btnXoaTK";
-            this.btnXoaTK.Size = new System.Drawing.Size(177, 23);
+            this.btnXoaTK.Size = new System.Drawing.Size(184, 47);
             this.btnXoaTK.TabIndex = 14;
-            this.btnXoaTK.Text = "Xoa tai khoan";
+            this.btnXoaTK.Text = "Xóa tài khoản";
             this.btnXoaTK.UseVisualStyleBackColor = true;
             this.btnXoaTK.Click += new System.EventHandler(this.btnXoaTK_Click_1);
             // 
             // cbxHoTen
             // 
+            this.cbxHoTen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxHoTen.FormattingEnabled = true;
             this.cbxHoTen.Location = new System.Drawing.Point(327, 56);
             this.cbxHoTen.Name = "cbxHoTen";
@@ -187,54 +189,54 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(659, 56);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 16);
+            this.label6.Size = new System.Drawing.Size(88, 16);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Ma nhan vien";
+            this.label6.Text = "Mẫ nhân viên:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(180, 272);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 16);
+            this.label5.Size = new System.Drawing.Size(50, 16);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Quyen";
+            this.label5.Text = "Vai trò:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(180, 209);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 16);
+            this.label4.Size = new System.Drawing.Size(122, 16);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Xac nhan mat khau";
+            this.label4.Text = "Xác nhận mật khẩu:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(176, 158);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 16);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Mat khau";
+            this.label3.Text = "Mật khẩu:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(176, 107);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 16);
+            this.label2.Size = new System.Drawing.Size(68, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Tai khoan";
+            this.label2.Text = "Tài khoản:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(176, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 16);
+            this.label1.Size = new System.Drawing.Size(66, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Ho va ten nhan vien";
+            this.label1.Text = "Họ và tên:";
             // 
             // panelControl1
             // 
@@ -251,9 +253,9 @@
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(536, 40);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(162, 33);
+            this.labelControl1.Size = new System.Drawing.Size(170, 34);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Xoa tai khoan";
+            this.labelControl1.Text = "Xóa tài khoản";
             // 
             // frmTaiKhoanXoa2
             // 
@@ -268,7 +270,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rgVaiTro.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMANV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtXacNhanMK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMatKhau.Properties)).EndInit();
@@ -286,7 +288,7 @@
         private System.Windows.Forms.RadioButton rbGiaoVien;
         private System.Windows.Forms.RadioButton rbCoSo;
         private System.Windows.Forms.RadioButton rbTruong;
-        private DevExpress.XtraEditors.RadioGroup radioGroup1;
+        private DevExpress.XtraEditors.RadioGroup rgVaiTro;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnXoaTK;
         private System.Windows.Forms.ComboBox cbxHoTen;

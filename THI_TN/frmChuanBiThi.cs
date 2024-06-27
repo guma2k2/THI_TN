@@ -37,6 +37,19 @@ namespace THI_TN
             cbxCoSo.DisplayMember = "TENCOSO";
             cbxCoSo.ValueMember = "TENSERVER";
             cbxCoSo.SelectedIndex = Program.mChiNhanh;
+
+
+            cbxTenMonHoc.DataSource = bdsMonHoc;
+            cbxTenMonHoc.DisplayMember = "TENMH";
+            cbxTenMonHoc.ValueMember = "MAMH";
+
+
+            cbxTenLop.DataSource = bdsLop;
+            cbxTenLop.DisplayMember = "TENLOP";
+            cbxTenLop.ValueMember = "MALOP";
+
+
+            
             if (Program.mGroup == "CoSo")
             {
                 cbxCoSo.Enabled = false;
@@ -52,14 +65,7 @@ namespace THI_TN
             }
 
 
-            cbxTenMonHoc.DataSource = bdsMonHoc;
-            cbxTenMonHoc.DisplayMember = "TENMH";
-            cbxTenMonHoc.ValueMember = "MAMH";
-
-
-            cbxTenLop.DataSource = bdsLop;
-            cbxTenLop.DisplayMember = "TENLOP";
-            cbxTenLop.ValueMember = "MALOP";
+           
 
 
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
@@ -127,7 +133,7 @@ namespace THI_TN
                     btnPhucHoi.Enabled = btnGhi.Enabled = false;
                     btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
                     panelControl1.Enabled = false;
-
+                    cbxTenMonHoc.Enabled = cbxTenLop.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -147,7 +153,9 @@ namespace THI_TN
 
             if (cbxLan.Text.Trim() == "")
             {
-
+                MessageBox.Show("Lần thi ko dc bo trong", "", MessageBoxButtons.OK);
+                cbxLan.Focus();
+                return false;
             }
             else if (int.Parse(cbxLan.Text.ToString()) < 1 || int.Parse(cbxLan.Text.ToString()) > 2)
             {
@@ -166,7 +174,7 @@ namespace THI_TN
             int thoiGianThi = int.Parse(cbxThoiGian.Text.ToString());
             if (thoiGianThi < 2 || soCauThi > 60)
             {
-                MessageBox.Show("Số câu thi phải lớn bằng 2 và nhỏ hơn bằng 60", "", MessageBoxButtons.OK);
+                MessageBox.Show("Thời gian thi phải lớn bằng 2 và nhỏ hơn bằng 60", "", MessageBoxButtons.OK);
                 cbxLan.Focus();
                 return false;
             }
@@ -241,13 +249,12 @@ namespace THI_TN
             bdsGV_DK.AddNew();
             cbxTrinhDo.SelectedIndex = 0;
             txtTrinhDo.Text = "A";
-            txtMAGV.Text = Program.username + "";
-            Console.WriteLine(Program.username);
+            txtMAGV.Text = Program.username;
             vitri = bdsGV_DK.Position;
             flagOption = "ADD";
             cbxTenMonHoc.Focus();
-            txtMALOP.Text = cbxTenLop.DisplayMember.ToString();
-            txtMAMH.Text = cbxTenLop.DisplayMember.ToString();
+            txtMALOP.Text = cbxTenLop.SelectedValue.ToString();
+            txtMAMH.Text = cbxTenMonHoc.SelectedValue.ToString();
 
 
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
@@ -284,27 +291,14 @@ namespace THI_TN
             vitri = bdsGV_DK.Position;
             flagOption = "UPDATE";
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = false;
+            cbxTenMonHoc.Enabled = cbxTenLop.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
             panelControl1.Enabled = true;
             gIAOVIEN_DANGKYGridControl.Enabled = false;
             cbxTenMonHoc.Enabled = cbxTenLop.Enabled = true;
         }
 
-        private void loadCbxTrinhDo(object sender, MouseEventArgs e)
-        {
-            if (txtTrinhDo.Text == "A")
-            {
-                cbxTrinhDo.SelectedIndex = 0;
-            }
-            else if (txtTrinhDo.Text == "B")
-            {
-                cbxTrinhDo.SelectedIndex = 1;
-            }
-            else
-            {
-                cbxTrinhDo.SelectedIndex = 2;
-            }
-        }
+      
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -317,6 +311,7 @@ namespace THI_TN
             panelControl1.Enabled = false;
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
             btnGhi.Enabled = btnPhucHoi.Enabled = false;
+            cbxTenMonHoc.Enabled = cbxTenLop.Enabled = true;
             if (vitri > 0)
             {
                 bdsGV_DK.Position = vitri;
@@ -336,7 +331,7 @@ namespace THI_TN
                    "EXEC @return_value = [dbo].[SP_CBT_CAN_DELETE] \n " +
                    "@malop = N'" + txtMALOP.Text.Trim() + "',\n " +
                    "@mamh = N'" + txtMAMH.Text.Trim() + "',\n " +
-                   "@lan = N'" + cbxLan.Text.Trim() + "',\n " +
+                   "@lan = N'" + cbxLan.Text.Trim() + "'\n " +
                    "SELECT 'Return Value' = @return_value";
             int result2 = Program.CheckDataHelper(queryCheckCount);
             if (result2 == -1)
@@ -376,6 +371,23 @@ namespace THI_TN
         private void btnLamMoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
 
+        }
+
+        private void gIAOVIEN_DANGKYGridControl_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (txtTrinhDo.Text == "A")
+            {
+                cbxTrinhDo.SelectedIndex = 0;
+            }
+            else if (txtTrinhDo.Text == "B")
+            {
+                cbxTrinhDo.SelectedIndex = 1;
+            }
+            else
+            {
+                cbxTrinhDo.SelectedIndex = 2;
+            }
         }
     }
 }

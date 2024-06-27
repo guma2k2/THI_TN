@@ -27,6 +27,7 @@ namespace THI_TN
             string maMonHoc = cbxMonHoc.SelectedValue.ToString();
             int lan = int.Parse(cbxLan.SelectedValue.ToString());
             rBangDiem rpt = new rBangDiem(malop, maMonHoc, lan);
+
             ReportPrintTool rptool = new ReportPrintTool(rpt);
             rptool.ShowPreviewDialog();
         }

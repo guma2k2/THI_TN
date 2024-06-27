@@ -47,6 +47,7 @@
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnLamMoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -79,7 +80,6 @@
             this.txtHo = new DevExpress.XtraEditors.TextEdit();
             this.txtMASV = new DevExpress.XtraEditors.TextEdit();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
-            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -293,6 +293,15 @@
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
+            // btnHuy
+            // 
+            this.btnHuy.Caption = "Hủy";
+            this.btnHuy.Id = 8;
+            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
+            this.btnHuy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.LargeImage")));
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
+            // 
             // bar2
             // 
             this.bar2.BarName = "Main menu";
@@ -375,6 +384,7 @@
             this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 2;
             this.label1.Text = "Cơ sở";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panelControl2
             // 
@@ -499,6 +509,7 @@
             // cbxLop
             // 
             this.cbxLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxLop.Enabled = false;
             this.cbxLop.FormattingEnabled = true;
             this.cbxLop.Location = new System.Drawing.Point(156, 201);
             this.cbxLop.Name = "cbxLop";
@@ -580,15 +591,6 @@
             // 
             this.bdsBangDiem.DataMember = "FK_BANGDIEM_SINHVIEN1";
             this.bdsBangDiem.DataSource = this.bdsSV;
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Caption = "Hủy";
-            this.btnHuy.Id = 8;
-            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnHuy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // frmSinhVien
             // 

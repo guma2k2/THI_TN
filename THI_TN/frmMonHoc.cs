@@ -25,7 +25,6 @@ namespace THI_TN
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             vitri = bdsMonHoc.Position;
-            txtMAMH.Enabled = true;
             flagOptionMonHoc = "ADD";
             bdsMonHoc.AddNew();
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMơi.Enabled = btnThoat.Enabled= false;
@@ -42,7 +41,6 @@ namespace THI_TN
             flagOptionMonHoc = "UPDATE";
             oldMaMonHoc = txtMAMH.Text.Trim();
             oldTenMonHoc = txtTenMH.Text.Trim();
-            txtMAMH.Enabled = false;
             btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMơi.Enabled = btnThoat.Enabled = false;
             btnGhi.Enabled = btnPhucHoi.Enabled = true;
             panelControl2.Enabled = true;

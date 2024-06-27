@@ -74,10 +74,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.GIAOVIEN_DANGKYTableAdapter = new THI_TN.DSTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.tableAdapterManager = new THI_TN.DSTableAdapters.TableAdapterManager();
-            this.LOPTableAdapter = new THI_TN.DSTableAdapters.LOPTableAdapter();
-            this.MONHOCTableAdapter = new THI_TN.DSTableAdapters.MONHOCTableAdapter();
-            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
-            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.gIAOVIEN_DANGKYGridControl = new DevExpress.XtraGrid.GridControl();
@@ -91,7 +87,10 @@
             this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.realTimeSource1 = new DevExpress.Data.RealTimeSource();
+            this.LOPTableAdapter = new THI_TN.DSTableAdapters.LOPTableAdapter();
+            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
+            this.MONHOCTableAdapter = new THI_TN.DSTableAdapters.MONHOCTableAdapter();
+            this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
             mAGVLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -114,8 +113,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMALOP.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAMH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAGV.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
@@ -124,6 +121,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
             this.SuspendLayout();
             // 
             // mAGVLabel
@@ -407,10 +406,6 @@
             // 
             this.cbxTenMonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxTenMonHoc.FormattingEnabled = true;
-            this.cbxTenMonHoc.Items.AddRange(new object[] {
-            "Đại học chuyên ngành",
-            "Đại học không chuyên ngành",
-            "Cao đẳng"});
             this.cbxTenMonHoc.Location = new System.Drawing.Point(152, 68);
             this.cbxTenMonHoc.Name = "cbxTenMonHoc";
             this.cbxTenMonHoc.Size = new System.Drawing.Size(347, 24);
@@ -487,6 +482,7 @@
             this.cbxSoCauThi.Name = "cbxSoCauThi";
             this.cbxSoCauThi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cbxSoCauThi.Properties.MaskSettings.Set("mask", "d");
             this.cbxSoCauThi.Size = new System.Drawing.Size(351, 24);
             this.cbxSoCauThi.TabIndex = 13;
             // 
@@ -599,25 +595,6 @@
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = THI_TN.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // LOPTableAdapter
-            // 
-            this.LOPTableAdapter.ClearBeforeFill = true;
-            // 
-            // MONHOCTableAdapter
-            // 
-            this.MONHOCTableAdapter.ClearBeforeFill = true;
-            // 
-            // bdsMonHoc
-            // 
-            this.bdsMonHoc.DataMember = "MONHOC";
-            this.bdsMonHoc.DataSource = this.DS;
-            // 
-            // bdsLop
-            // 
-            this.bdsLop.AllowNew = false;
-            this.bdsLop.DataMember = "LOP";
-            this.bdsLop.DataSource = this.DS;
-            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.panelControl4);
@@ -649,6 +626,7 @@
             this.gIAOVIEN_DANGKYGridControl.TabIndex = 1;
             this.gIAOVIEN_DANGKYGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gIAOVIEN_DANGKYGridControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gIAOVIEN_DANGKYGridControl_MouseDown);
             // 
             // gridView1
             // 
@@ -747,9 +725,24 @@
             this.panelControl3.TabIndex = 1;
             this.panelControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl3_Paint);
             // 
-            // realTimeSource1
+            // LOPTableAdapter
             // 
-            this.realTimeSource1.DisplayableProperties = null;
+            this.LOPTableAdapter.ClearBeforeFill = true;
+            // 
+            // bdsLop
+            // 
+            this.bdsLop.AllowNew = false;
+            this.bdsLop.DataMember = "LOP";
+            this.bdsLop.DataSource = this.DS;
+            // 
+            // MONHOCTableAdapter
+            // 
+            this.MONHOCTableAdapter.ClearBeforeFill = true;
+            // 
+            // bdsMonHoc
+            // 
+            this.bdsMonHoc.DataMember = "MONHOC";
+            this.bdsMonHoc.DataSource = this.DS;
             // 
             // frmChuanBiThi
             // 
@@ -780,8 +773,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMALOP.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAMH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMAGV.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
@@ -791,6 +782,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -826,10 +819,6 @@
         private DevExpress.XtraEditors.TextEdit txtMALOP;
         private DevExpress.XtraEditors.TextEdit txtMAMH;
         private DevExpress.XtraEditors.TextEdit txtMAGV;
-        private DSTableAdapters.MONHOCTableAdapter MONHOCTableAdapter;
-        private System.Windows.Forms.BindingSource bdsMonHoc;
-        private DSTableAdapters.LOPTableAdapter LOPTableAdapter;
-        private System.Windows.Forms.BindingSource bdsLop;
         private System.Windows.Forms.ComboBox cbxTrinhDo;
         private System.Windows.Forms.ComboBox cbxCoSo;
         private System.Windows.Forms.Label label1;
@@ -840,7 +829,6 @@
         private System.Windows.Forms.ComboBox cbxTenLop;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.Data.RealTimeSource realTimeSource1;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraGrid.GridControl gIAOVIEN_DANGKYGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -852,5 +840,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colLAN;
         private DevExpress.XtraGrid.Columns.GridColumn colSOCAUTHI;
         private DevExpress.XtraGrid.Columns.GridColumn colTHOIGIAN;
+        private DSTableAdapters.LOPTableAdapter LOPTableAdapter;
+        private DSTableAdapters.MONHOCTableAdapter MONHOCTableAdapter;
+        private System.Windows.Forms.BindingSource bdsLop;
+        private System.Windows.Forms.BindingSource bdsMonHoc;
     }
 }

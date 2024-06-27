@@ -50,7 +50,7 @@ namespace THI_TN
             cbxLop.ValueMember = "MALOP";
 
 
-            if (Program.mGroup == "CoSo")
+            if (Program.mGroup == "CoSo" || Program.mGroup == "Truong")
             {
                 cbxCoSo.Enabled = false;
                 if (cbxSinhVien.SelectedValue != null)
@@ -93,6 +93,7 @@ namespace THI_TN
                 cbxSinhVien.DataSource = bdsSinhVien;
                 cbxSinhVien.ValueMember = "MASV";
                 cbxSinhVien.DisplayMember = "HOTEN";
+                loadComboboxMonHoc();
             }
             
         }
@@ -260,6 +261,11 @@ namespace THI_TN
             Console.WriteLine(tenLop);
             cbxLop.Text = tenLop;
             Program.myReader.Close();
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

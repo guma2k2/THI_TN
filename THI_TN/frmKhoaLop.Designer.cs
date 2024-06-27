@@ -42,15 +42,14 @@
             this.btnAddKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnSuaKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiKhoa = new DevExpress.XtraBars.BarButtonItem();
-            this.btnXoaKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXoaKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnThemLop = new DevExpress.XtraBars.BarButtonItem();
             this.btnSuaLop = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiLop2 = new DevExpress.XtraBars.BarButtonItem();
-            this.btnGhiLop = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoaLop = new DevExpress.XtraBars.BarButtonItem();
-            this.btnLamMoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoiLop2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLamMoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -58,6 +57,7 @@
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnGhiLop = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoiLop = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -282,15 +282,6 @@
             this.btnGhiKhoa.Name = "btnGhiKhoa";
             this.btnGhiKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiKhoa_ItemClick);
             // 
-            // btnXoaKhoa
-            // 
-            this.btnXoaKhoa.Caption = "Xóa khoa";
-            this.btnXoaKhoa.Id = 3;
-            this.btnXoaKhoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaKhoa.ImageOptions.Image")));
-            this.btnXoaKhoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoaKhoa.ImageOptions.LargeImage")));
-            this.btnXoaKhoa.Name = "btnXoaKhoa";
-            this.btnXoaKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaKhoa_ItemClick);
-            // 
             // btnPhucHoi
             // 
             this.btnPhucHoi.Caption = "Phục hồi khoa";
@@ -299,6 +290,15 @@
             this.btnPhucHoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoi.ImageOptions.LargeImage")));
             this.btnPhucHoi.Name = "btnPhucHoi";
             this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
+            // 
+            // btnXoaKhoa
+            // 
+            this.btnXoaKhoa.Caption = "Xóa khoa";
+            this.btnXoaKhoa.Id = 3;
+            this.btnXoaKhoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaKhoa.ImageOptions.Image")));
+            this.btnXoaKhoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoaKhoa.ImageOptions.LargeImage")));
+            this.btnXoaKhoa.Name = "btnXoaKhoa";
+            this.btnXoaKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaKhoa_ItemClick);
             // 
             // btnThemLop
             // 
@@ -327,15 +327,6 @@
             this.btnGhiLop2.Name = "btnGhiLop2";
             this.btnGhiLop2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiLop2_ItemClick);
             // 
-            // btnGhiLop
-            // 
-            this.btnGhiLop.Caption = "Ghi Lop";
-            this.btnGhiLop.Id = 9;
-            this.btnGhiLop.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhiLop.ImageOptions.Image")));
-            this.btnGhiLop.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhiLop.ImageOptions.LargeImage")));
-            this.btnGhiLop.Name = "btnGhiLop";
-            this.btnGhiLop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiLop_ItemClick);
-            // 
             // btnXoaLop
             // 
             this.btnXoaLop.Caption = "Xóa lớp";
@@ -345,15 +336,6 @@
             this.btnXoaLop.Name = "btnXoaLop";
             this.btnXoaLop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaLop_ItemClick);
             // 
-            // btnLamMoi
-            // 
-            this.btnLamMoi.Caption = "Làm mới";
-            this.btnLamMoi.Id = 6;
-            this.btnLamMoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.Image")));
-            this.btnLamMoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.LargeImage")));
-            this.btnLamMoi.Name = "btnLamMoi";
-            this.btnLamMoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLamMoi_ItemClick);
-            // 
             // btnPhucHoiLop2
             // 
             this.btnPhucHoiLop2.Caption = "Phục hồi lớp";
@@ -362,6 +344,15 @@
             this.btnPhucHoiLop2.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoiLop2.ImageOptions.LargeImage")));
             this.btnPhucHoiLop2.Name = "btnPhucHoiLop2";
             this.btnPhucHoiLop2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // btnLamMoi
+            // 
+            this.btnLamMoi.Caption = "Làm mới";
+            this.btnLamMoi.Id = 6;
+            this.btnLamMoi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.Image")));
+            this.btnLamMoi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.ImageOptions.LargeImage")));
+            this.btnLamMoi.Name = "btnLamMoi";
+            this.btnLamMoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLamMoi_ItemClick);
             // 
             // btnThoat
             // 
@@ -426,6 +417,15 @@
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Size = new System.Drawing.Size(0, 793);
             // 
+            // btnGhiLop
+            // 
+            this.btnGhiLop.Caption = "Ghi Lop";
+            this.btnGhiLop.Id = 9;
+            this.btnGhiLop.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhiLop.ImageOptions.Image")));
+            this.btnGhiLop.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhiLop.ImageOptions.LargeImage")));
+            this.btnGhiLop.Name = "btnGhiLop";
+            this.btnGhiLop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhiLop_ItemClick);
+            // 
             // barButtonItem1
             // 
             this.barButtonItem1.Caption = "Ghi Lop";
@@ -460,7 +460,7 @@
             this.cbxCoSo.FormattingEnabled = true;
             this.cbxCoSo.Location = new System.Drawing.Point(373, 15);
             this.cbxCoSo.Name = "cbxCoSo";
-            this.cbxCoSo.Size = new System.Drawing.Size(315, 24);
+            this.cbxCoSo.Size = new System.Drawing.Size(375, 24);
             this.cbxCoSo.TabIndex = 3;
             this.cbxCoSo.SelectedIndexChanged += new System.EventHandler(this.cbxCoSo_SelectedIndexChanged);
             // 

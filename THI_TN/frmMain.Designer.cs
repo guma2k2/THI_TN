@@ -111,8 +111,8 @@
             // 
             this.btnMH.Caption = "Môn học";
             this.btnMH.Id = 1;
-            this.btnMH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnMH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btnMH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMH.ImageOptions.Image")));
+            this.btnMH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnMH.ImageOptions.LargeImage")));
             this.btnMH.Name = "btnMH";
             this.btnMH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
@@ -235,6 +235,7 @@
             this.btnDanhSachDK.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDanhSachDK.ImageOptions.Image")));
             this.btnDanhSachDK.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDanhSachDK.ImageOptions.LargeImage")));
             this.btnDanhSachDK.Name = "btnDanhSachDK";
+            this.btnDanhSachDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDanhSachDK_ItemClick);
             // 
             // btnTaoTk
             // 

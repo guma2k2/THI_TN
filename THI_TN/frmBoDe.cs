@@ -404,6 +404,10 @@ namespace THI_TN
             }
         }
 
+        private void panelControl2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 /*if (txtTrinhDo.Text == "A")

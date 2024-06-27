@@ -32,7 +32,7 @@
             this.btnThi = new System.Windows.Forms.Button();
             this.txtNgaythi = new DevExpress.XtraEditors.DateEdit();
             this.cbxMonHoc = new System.Windows.Forms.ComboBox();
-            this.txtTenlop = new DevExpress.XtraEditors.TextEdit();
+            this.txtMalop = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -43,19 +43,26 @@
             this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
             this.LOPTableAdapter = new THI_TN.DSTableAdapters.LOPTableAdapter();
             this.tableAdapterManager = new THI_TN.DSTableAdapters.TableAdapterManager();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.cbxLan = new System.Windows.Forms.ComboBox();
+            this.cbxCoSo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtLan = new DevExpress.XtraEditors.TextEdit();
+            this.groupThi = new DevExpress.XtraEditors.GroupControl();
+            this.lbTrinhDo = new DevExpress.XtraEditors.LabelControl();
+            this.lbThoiGian = new DevExpress.XtraEditors.LabelControl();
+            this.lbSoCauThi = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaythi.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaythi.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTenlop.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMalop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupThi)).BeginInit();
+            this.groupThi.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnThi
             // 
-            this.btnThi.Location = new System.Drawing.Point(480, 528);
+            this.btnThi.Location = new System.Drawing.Point(481, 612);
             this.btnThi.Name = "btnThi";
             this.btnThi.Size = new System.Drawing.Size(299, 23);
             this.btnThi.TabIndex = 26;
@@ -66,76 +73,80 @@
             // txtNgaythi
             // 
             this.txtNgaythi.EditValue = null;
-            this.txtNgaythi.Location = new System.Drawing.Point(497, 428);
+            this.txtNgaythi.Location = new System.Drawing.Point(497, 371);
             this.txtNgaythi.Name = "txtNgaythi";
             this.txtNgaythi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtNgaythi.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtNgaythi.Size = new System.Drawing.Size(282, 22);
+            this.txtNgaythi.Size = new System.Drawing.Size(315, 22);
             this.txtNgaythi.TabIndex = 24;
             // 
             // cbxMonHoc
             // 
+            this.cbxMonHoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxMonHoc.FormattingEnabled = true;
             this.cbxMonHoc.Location = new System.Drawing.Point(497, 332);
             this.cbxMonHoc.Name = "cbxMonHoc";
-            this.cbxMonHoc.Size = new System.Drawing.Size(282, 24);
+            this.cbxMonHoc.Size = new System.Drawing.Size(315, 24);
             this.cbxMonHoc.TabIndex = 23;
+            this.cbxMonHoc.SelectedIndexChanged += new System.EventHandler(this.cbxMonHoc_SelectedIndexChanged);
             // 
-            // txtTenlop
+            // txtMalop
             // 
-            this.txtTenlop.Location = new System.Drawing.Point(497, 274);
-            this.txtTenlop.Name = "txtTenlop";
-            this.txtTenlop.Size = new System.Drawing.Size(282, 22);
-            this.txtTenlop.TabIndex = 21;
+            this.txtMalop.Enabled = false;
+            this.txtMalop.Location = new System.Drawing.Point(497, 274);
+            this.txtMalop.Name = "txtMalop";
+            this.txtMalop.Size = new System.Drawing.Size(315, 22);
+            this.txtMalop.TabIndex = 21;
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(383, 386);
+            this.labelControl7.Location = new System.Drawing.Point(383, 415);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(38, 16);
+            this.labelControl7.Size = new System.Drawing.Size(43, 16);
             this.labelControl7.TabIndex = 19;
-            this.labelControl7.Text = "Lan thi";
+            this.labelControl7.Text = "Lần thi:";
             // 
             // labelControl6
             // 
-            this.labelControl6.Location = new System.Drawing.Point(383, 434);
+            this.labelControl6.Location = new System.Drawing.Point(383, 377);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(46, 16);
+            this.labelControl6.Size = new System.Drawing.Size(51, 16);
             this.labelControl6.TabIndex = 18;
-            this.labelControl6.Text = "Ngay thi";
+            this.labelControl6.Text = "Ngày thi:";
             // 
             // labelControl5
             // 
             this.labelControl5.Location = new System.Drawing.Point(376, 332);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(48, 16);
+            this.labelControl5.Size = new System.Drawing.Size(53, 16);
             this.labelControl5.TabIndex = 17;
-            this.labelControl5.Text = "Mon hoc";
+            this.labelControl5.Text = "Môn học:";
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(380, 277);
+            this.labelControl2.Location = new System.Drawing.Point(381, 227);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(49, 16);
+            this.labelControl2.Size = new System.Drawing.Size(48, 16);
             this.labelControl2.TabIndex = 15;
-            this.labelControl2.Text = "TEN LOP";
+            this.labelControl2.Text = "Tên lớp:";
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(380, 227);
+            this.labelControl1.Location = new System.Drawing.Point(383, 277);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(44, 16);
+            this.labelControl1.Size = new System.Drawing.Size(43, 16);
             this.labelControl1.TabIndex = 14;
-            this.labelControl1.Text = "MA LOP";
+            this.labelControl1.Text = "Mã lớp:";
             // 
             // cbxLop
             // 
+            this.cbxLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLop.FormattingEnabled = true;
             this.cbxLop.Location = new System.Drawing.Point(497, 227);
             this.cbxLop.Name = "cbxLop";
-            this.cbxLop.Size = new System.Drawing.Size(282, 24);
+            this.cbxLop.Size = new System.Drawing.Size(315, 24);
             this.cbxLop.TabIndex = 27;
             this.cbxLop.SelectedIndexChanged += new System.EventHandler(this.cbxLop_SelectedIndexChanged);
             // 
@@ -168,44 +179,81 @@
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = THI_TN.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // labelControl3
+            // cbxCoSo
             // 
-            this.labelControl3.Location = new System.Drawing.Point(383, 180);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(54, 16);
-            this.labelControl3.TabIndex = 28;
-            this.labelControl3.Text = "MA Co so";
+            this.cbxCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCoSo.FormattingEnabled = true;
+            this.cbxCoSo.Location = new System.Drawing.Point(497, 168);
+            this.cbxCoSo.Name = "cbxCoSo";
+            this.cbxCoSo.Size = new System.Drawing.Size(315, 24);
+            this.cbxCoSo.TabIndex = 32;
+            this.cbxCoSo.SelectedIndexChanged += new System.EventHandler(this.cbxCoSo_SelectedIndexChanged);
             // 
-            // comboBox1
+            // label1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(497, 180);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(282, 24);
-            this.comboBox1.TabIndex = 29;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(391, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 16);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Cơ sở";
             // 
-            // cbxLan
+            // txtLan
             // 
-            this.cbxLan.FormattingEnabled = true;
-            this.cbxLan.Location = new System.Drawing.Point(497, 383);
-            this.cbxLan.Name = "cbxLan";
-            this.cbxLan.Size = new System.Drawing.Size(282, 24);
-            this.cbxLan.TabIndex = 30;
+            this.txtLan.Location = new System.Drawing.Point(497, 409);
+            this.txtLan.Name = "txtLan";
+            this.txtLan.Size = new System.Drawing.Size(315, 22);
+            this.txtLan.TabIndex = 33;
+            // 
+            // groupThi
+            // 
+            this.groupThi.Controls.Add(this.lbTrinhDo);
+            this.groupThi.Controls.Add(this.lbThoiGian);
+            this.groupThi.Controls.Add(this.lbSoCauThi);
+            this.groupThi.Location = new System.Drawing.Point(345, 459);
+            this.groupThi.Name = "groupThi";
+            this.groupThi.Size = new System.Drawing.Size(510, 119);
+            this.groupThi.TabIndex = 34;
+            this.groupThi.Visible = false;
+            // 
+            // lbTrinhDo
+            // 
+            this.lbTrinhDo.Location = new System.Drawing.Point(344, 44);
+            this.lbTrinhDo.Name = "lbTrinhDo";
+            this.lbTrinhDo.Size = new System.Drawing.Size(53, 16);
+            this.lbTrinhDo.TabIndex = 2;
+            this.lbTrinhDo.Text = "Trình độ:";
+            // 
+            // lbThoiGian
+            // 
+            this.lbThoiGian.Location = new System.Drawing.Point(56, 76);
+            this.lbThoiGian.Name = "lbThoiGian";
+            this.lbThoiGian.Size = new System.Drawing.Size(76, 16);
+            this.lbThoiGian.TabIndex = 1;
+            this.lbThoiGian.Text = "Thời gian thi:";
+            // 
+            // lbSoCauThi
+            // 
+            this.lbSoCauThi.Location = new System.Drawing.Point(56, 44);
+            this.lbSoCauThi.Name = "lbSoCauThi";
+            this.lbSoCauThi.Size = new System.Drawing.Size(66, 16);
+            this.lbSoCauThi.TabIndex = 0;
+            this.lbSoCauThi.Text = "Số câu thi: ";
             // 
             // frmBeginThiThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1126, 752);
-            this.Controls.Add(this.cbxLan);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.labelControl3);
+            this.Controls.Add(this.groupThi);
+            this.Controls.Add(this.txtLan);
+            this.Controls.Add(this.cbxCoSo);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxLop);
             this.Controls.Add(this.btnThi);
             this.Controls.Add(this.txtNgaythi);
             this.Controls.Add(this.cbxMonHoc);
-            this.Controls.Add(this.txtTenlop);
+            this.Controls.Add(this.txtMalop);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.labelControl5);
@@ -216,9 +264,13 @@
             this.Load += new System.EventHandler(this.frmBeginThiThu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaythi.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgaythi.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTenlop.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMalop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupThi)).EndInit();
+            this.groupThi.ResumeLayout(false);
+            this.groupThi.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,7 +281,7 @@
         private System.Windows.Forms.Button btnThi;
         private DevExpress.XtraEditors.DateEdit txtNgaythi;
         private System.Windows.Forms.ComboBox cbxMonHoc;
-        private DevExpress.XtraEditors.TextEdit txtTenlop;
+        private DevExpress.XtraEditors.TextEdit txtMalop;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl5;
@@ -240,8 +292,12 @@
         private System.Windows.Forms.BindingSource bdsLop;
         private DSTableAdapters.LOPTableAdapter LOPTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox cbxLan;
+        private System.Windows.Forms.ComboBox cbxCoSo;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.TextEdit txtLan;
+        private DevExpress.XtraEditors.GroupControl groupThi;
+        private DevExpress.XtraEditors.LabelControl lbTrinhDo;
+        private DevExpress.XtraEditors.LabelControl lbThoiGian;
+        private DevExpress.XtraEditors.LabelControl lbSoCauThi;
     }
 }

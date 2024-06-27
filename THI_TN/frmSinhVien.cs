@@ -71,7 +71,6 @@ namespace THI_TN
             vitri = bdsLop.Position;
             flagOptionSV = "ADD";
             bdsSV.AddNew();
-            txtMASV.Enabled = true;
             string maLop = ((DataRowView)bdsLop[vitri])["MALOP"].ToString();
             txtMALOP.Enabled = false;
             txtMALOP.Text = maLop;
@@ -381,6 +380,9 @@ namespace THI_TN
 
         }
 
-      
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
