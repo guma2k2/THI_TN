@@ -178,27 +178,31 @@ namespace THI_TN
 
         private void btnNopBai_Click(object sender, EventArgs e)
         {
-            timerThi.Stop();
-            calculateMark();
-            Console.WriteLine(diemThi.ToString());
-            ResultExam result = new ResultExam();
-            result.lan = bangDiem.lan;
-            result.tenMh = tenmh;
-            result.diem = diemThi;
-            result.ngayThi = bangDiem.ngayThi;
-            if (Program.mGroup == "GV")
-            {
-                frmThiResult frm = new frmThiResult(result);
-                
-                frm.Show();
 
-                return;
-            } 
-            DataTable ctBaiThiTable = createDataTableCtBaiThi();
-            saveBangDiem(ctBaiThiTable);
-            frmThiResult f = new frmThiResult(result);
-            f.Show();
-            this.Close();
+            if (MessageBox.Show("Bạn có chắc chắn nộp bài thi?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                timerThi.Stop();
+                calculateMark();
+                Console.WriteLine(diemThi.ToString());
+                ResultExam result = new ResultExam();
+                result.lan = bangDiem.lan;
+                result.tenMh = tenmh;
+                result.diem = diemThi;
+                result.ngayThi = bangDiem.ngayThi;
+                if (Program.mGroup == "GV")
+                {
+                    frmThiResult frm = new frmThiResult(result);
+
+                    frm.Show();
+
+                    return;
+                }
+                DataTable ctBaiThiTable = createDataTableCtBaiThi();
+                saveBangDiem(ctBaiThiTable);
+                frmThiResult f = new frmThiResult(result);
+                f.Show();
+                this.Close();
+            }
         }
 
         private DataTable createDataTableCtBaiThi()
@@ -243,8 +247,7 @@ namespace THI_TN
             cmd.Parameters.AddWithValue("@mamh", bangDiem.mamh);
             cmd.Parameters.AddWithValue("@lan", bangDiem.lan);
             cmd.Parameters.AddWithValue("@ngaythi", bangDiem.ngayThi);
-            cmd.Parameters.AddWithValue("@diem", diemThi);
-            Console.WriteLine(diemThi.ToString());
+            cmd.Parameters.AddWithValue("@diem", diemThi.ToString());
             conn.Open();
             int rowAffected = 0;
             try

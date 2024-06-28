@@ -46,6 +46,9 @@ namespace THI_TN
 
         }
 
-      
+        private void txtMonHoc_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

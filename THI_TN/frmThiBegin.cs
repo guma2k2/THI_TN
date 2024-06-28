@@ -136,7 +136,7 @@ namespace THI_TN
         private void btnThi_Click(object sender, EventArgs e)
         {
             string mamh = cbxMonhoc.SelectedValue.ToString();
-            string tenmh = cbxMonhoc.DisplayMember.ToString();
+            string tenmh = cbxMonhoc.Text.ToString();
             string sqlGetDethi = "EXEC dbo.SP_THI_GET_QUESTION '" + mamh + "', '" + trinhDo + "', '" + soCauThi + "' ";
             if (Program.KetNoi() == 0) return;
             Program.myReader = Program.ExecSqlDataReader(sqlGetDethi);

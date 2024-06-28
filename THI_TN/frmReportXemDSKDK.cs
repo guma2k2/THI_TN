@@ -23,8 +23,6 @@ namespace THI_TN
         {
             string from = txtFrom.Text.ToString();
             string to = txtTo.Text.ToString();
-
-          
             if (from != "" && to != "")
             {
                 rXemDSDK rpt = new rXemDSDK(from, to);

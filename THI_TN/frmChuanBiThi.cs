@@ -122,25 +122,31 @@ namespace THI_TN
         {
             if (validateChuanBiThi() == true)
             {
-                try
-                {
-                    bdsGV_DK.EndEdit();
-                    bdsGV_DK.ResetCurrentItem();
-                    this.GIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
-                    this.GIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
 
-                    gIAOVIEN_DANGKYGridControl.Enabled = true;
-                    btnPhucHoi.Enabled = btnGhi.Enabled = false;
-                    btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
-                    panelControl1.Enabled = false;
-                    cbxTenMonHoc.Enabled = cbxTenLop.Enabled = true;
-                }
-                catch (Exception ex)
+                if (MessageBox.Show("Bạn có thật sự muốn đăng kí thi?", "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    Console.Write(ex.ToString());
-                    MessageBox.Show("Lỗi ghi giáo viên đăng kí", ex.Message, MessageBoxButtons.OK);
-                    return;
+                    try
+                    {
+                        bdsGV_DK.EndEdit();
+                        bdsGV_DK.ResetCurrentItem();
+                        this.GIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.GIAOVIEN_DANGKYTableAdapter.Update(this.DS.GIAOVIEN_DANGKY);
+
+                        gIAOVIEN_DANGKYGridControl.Enabled = true;
+                        btnPhucHoi.Enabled = btnGhi.Enabled = false;
+                        btnAdd.Enabled = btnSua.Enabled = btnXoa.Enabled = btnLamMoi.Enabled = btnThoat.Enabled = true;
+                        panelControl1.Enabled = false;
+                        cbxTenMonHoc.Enabled = cbxTenLop.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.Write(ex.ToString());
+                        MessageBox.Show("Lỗi ghi giáo viên đăng kí", ex.Message, MessageBoxButtons.OK);
+                        return;
+                    }
                 }
+
+                
             }
             else
             {

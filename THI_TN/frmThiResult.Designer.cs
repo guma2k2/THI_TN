@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtMonHoc = new DevExpress.XtraEditors.TextEdit();
             this.txtNgayThi = new DevExpress.XtraEditors.TextEdit();
             this.lb_diemthi = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -38,13 +39,12 @@
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtMonHoc = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonHoc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgayThi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHoten.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonHoc.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -66,8 +66,20 @@
             this.panelControl1.TabIndex = 0;
             this.panelControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelControl1_Paint);
             // 
+            // txtMonHoc
+            // 
+            this.txtMonHoc.Enabled = false;
+            this.txtMonHoc.Location = new System.Drawing.Point(517, 226);
+            this.txtMonHoc.Name = "txtMonHoc";
+            this.txtMonHoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMonHoc.Properties.Appearance.Options.UseFont = true;
+            this.txtMonHoc.Size = new System.Drawing.Size(282, 30);
+            this.txtMonHoc.TabIndex = 34;
+            this.txtMonHoc.EditValueChanged += new System.EventHandler(this.txtMonHoc_EditValueChanged);
+            // 
             // txtNgayThi
             // 
+            this.txtNgayThi.Enabled = false;
             this.txtNgayThi.Location = new System.Drawing.Point(517, 271);
             this.txtNgayThi.Name = "txtNgayThi";
             this.txtNgayThi.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -97,6 +109,7 @@
             // 
             // txtLan
             // 
+            this.txtLan.Enabled = false;
             this.txtLan.Location = new System.Drawing.Point(517, 318);
             this.txtLan.Name = "txtLan";
             this.txtLan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,6 +119,7 @@
             // 
             // txtHoten
             // 
+            this.txtHoten.Enabled = false;
             this.txtHoten.Location = new System.Drawing.Point(517, 179);
             this.txtHoten.Name = "txtHoten";
             this.txtHoten.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -154,15 +168,6 @@
             this.labelControl3.Text = "Họ tên:";
             this.labelControl3.Click += new System.EventHandler(this.labelControl3_Click);
             // 
-            // txtMonHoc
-            // 
-            this.txtMonHoc.Location = new System.Drawing.Point(517, 226);
-            this.txtMonHoc.Name = "txtMonHoc";
-            this.txtMonHoc.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMonHoc.Properties.Appearance.Options.UseFont = true;
-            this.txtMonHoc.Size = new System.Drawing.Size(282, 30);
-            this.txtMonHoc.TabIndex = 34;
-            // 
             // frmThiResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -175,10 +180,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonHoc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNgayThi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHoten.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonHoc.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

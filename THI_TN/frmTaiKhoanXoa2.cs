@@ -76,7 +76,8 @@ namespace THI_TN
         private void frmTaiKhoanXoa2_Load(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            string cmd = "EXEC [dbo].[SP_TAIKHOAN_DS_GV_COTK]";
+            Console.WriteLine(txtMANV.Text.ToString());
+            string cmd = "EXEC [dbo].[SP_TAIKHOAN_DS_GV_COTK] '" + Program.username + "'";
             dt = Program.ExecSqlQuery(cmd);
 
             BindingSource bdsGv = new BindingSource();
